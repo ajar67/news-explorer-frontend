@@ -8,7 +8,7 @@
   height: 80px;
   padding-left: 100px;
   padding-right: 100px;
-  border-bottom: 0.05px solid #cccccc;
+  border-bottom: 0.05px solid gray; /*rgba(26, 27, 34, 1) */
 }
 
 .header__title {
@@ -21,17 +21,21 @@
 
 .header__options {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
 }
 
-.header__button_home {
+.header__home {
   color: white;
-  background: none;
-  border: none;
+  border-bottom: 2px solid #FFF;
+  height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .header__button_signin {

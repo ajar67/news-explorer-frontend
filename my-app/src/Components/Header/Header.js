@@ -8,7 +8,7 @@ const Header = () => {
     <header className="header__section">
       <div className="header__title">NewsExplorer</div>
       <div className="header__options">
-        <button className="header__button_home">Home</button>
+        <p className="header__home">Home</p>
         <button className="header__button_signin">Sign in</button>
       </div>
     </header>
