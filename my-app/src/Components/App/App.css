@@ -1,0 +1,11 @@
+.app{
+    overflow-x: hidden;
+}
+
+.container {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgGNkwOF0bPw9pLIgWenIxHTwQB7AtAnDo4A&usqp=CAU");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 576px;
+  width: 100%;
+}

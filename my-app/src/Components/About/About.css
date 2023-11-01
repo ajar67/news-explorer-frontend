@@ -1,0 +1,36 @@
+@import url("../../vendor/fonts.css");
+
+.about__section {
+  display: flex;
+  flex-direction: row;
+  height: 624px;
+  max-width: 100%;
+  gap: 35px;
+  padding: 100px 100px 0 100px;
+}
+
+.about__image {
+  width: 464px;
+  height: 464px;
+  border-radius: 50%;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  margin-bottom: 0;
+}
+
+.about__para__text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
