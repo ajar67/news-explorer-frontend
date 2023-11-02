@@ -3,13 +3,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ onCreateSignin }) => {
   return (
     <header className="header__section">
       <div className="header__title">NewsExplorer</div>
       <div className="header__options">
         <p className="header__home">Home</p>
-        <button className="header__button_signin">Sign in</button>
+        <button className="header__button_signin" onClick={onCreateSignin}>
+          Sign in
+        </button>
       </div>
     </header>
   );

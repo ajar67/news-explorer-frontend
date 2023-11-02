@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-const Signin = ({ onClose, buttonText, isOpen }) => {
+const Signin = ({ onClose, buttonText, isOpen, onCreateSignup }) => {
   // props for open opposite modal {onCreateSignupModal}, onSubmit for the form
   const [formErrors, setFormErrors] = useState({
     email: "Enter a valid email",
@@ -24,23 +24,9 @@ const Signin = ({ onClose, buttonText, isOpen }) => {
     }
   };
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    // const validatePassword = (password) => {
-    //   if (password.length > 0) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // };
-    // if (e.target.name === "password") {
-    //   const isValidPassword = validatePassword(e.target.value);
-    //   setFormErrors({
-    //     ...formErrors,
-    //     password: isValidPassword ? "" : "Must enter a password",
-    //   });
-    // }
   };
 
   const isSubmitDisabled = Object.values(formErrors).some(
@@ -63,6 +49,7 @@ const Signin = ({ onClose, buttonText, isOpen }) => {
       onSubmit={handleSubmit}
       isSubmitDisabled={isSubmitDisabled}
       buttonText={buttonText}
+      name="signin"
     >
       <label className="modal__info">
         Email
@@ -73,7 +60,7 @@ const Signin = ({ onClose, buttonText, isOpen }) => {
           name="email"
           minLength="1"
           maxLength="30"
-          placeholder="Email"
+          placeholder="Enter email"
           onChange={handleEmailChange}
           required
         />
@@ -92,12 +79,12 @@ const Signin = ({ onClose, buttonText, isOpen }) => {
           required
         />
       </label>
-      <div className="modal__bottom">
+      <div className="modal__bottom modal__bottom_signin">
         <p className="modal__or">or</p>
         <button
           className="modal__button_two"
           type="button"
-          onClick={onCreateSignupModal}
+          onClick={onCreateSignup}
         >
           Sign up
         </button>

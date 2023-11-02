@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-const Signup = ({ onClose, buttonText, isOpen }) => {
+const Signup = ({ onClose, buttonText, isOpen, onCreateSignin }) => {
   // props for open opposite modal {onCreateSigninModal}, onSubmit for the form
   const [formErrors, setFormErrors] = useState({
     email: "Enter a valid email",
@@ -66,6 +66,7 @@ const Signup = ({ onClose, buttonText, isOpen }) => {
       onSubmit={handleSubmit}
       isSubmitDisabled={isSubmitDisabled}
       buttonText={buttonText}
+      name='signup'
     >
       <label className="modal__info">
         Email
@@ -109,12 +110,12 @@ const Signup = ({ onClose, buttonText, isOpen }) => {
           required
         />
       </label>
-      <div className="modal__bottom">
+      <div className="modal__bottom modal__bottom_signup">
         <p className="modal__or">or</p>
         <button
           className="modal__button_two"
           type="button"
-          onClick={onCreateSigninModal}
+          onClick={onCreateSignin}
         >
           Sign in
         </button>
