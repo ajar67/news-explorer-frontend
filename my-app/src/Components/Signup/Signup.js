@@ -66,7 +66,7 @@ const Signup = ({ onClose, buttonText, isOpen, onCreateSignin }) => {
       onSubmit={handleSubmit}
       isSubmitDisabled={isSubmitDisabled}
       buttonText={buttonText}
-      name='signup'
+      name="signup"
     >
       <label className="modal__info">
         Email

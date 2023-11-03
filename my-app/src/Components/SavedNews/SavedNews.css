@@ -1,0 +1,66 @@
+@import "../../vendor/fonts.css";
+
+.saved__section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-right: 100px;
+  color: black;
+}
+
+.saved__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  background-color: white;
+}
+
+.saved__articles {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 712px;
+  height: 24px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved__note {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 530px;
+  height: 92px;
+  font-family: "Roboto slab", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.saved__keywords {
+  width: 712px;
+  height: 24px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved__span {
+  font-weight: 700;
+}
+
+.saved__cards {
+  background-color: rgba(245, 246, 247, 1);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+}

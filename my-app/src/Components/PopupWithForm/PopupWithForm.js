@@ -1,7 +1,7 @@
 // popup with form will use this in all forms
-import './PopupWithForm.css';
+import "./PopupWithForm.css";
 import React from "react";
-import closeImage from '../../Images/closeButton.svg';
+import closeImage from "../../Images/closeButton.svg";
 
 const PopupWithForm = ({
   title,
@@ -13,9 +13,9 @@ const PopupWithForm = ({
   buttonText,
 }) => {
   //have to define all props
-  console.log(isSubmitDisabled)
+  console.log(isSubmitDisabled);
   return (
-    <div className='modal__section'>
+    <div className="modal__section">
       <div className={`modal__content modal__content_${name}`}>
         <button className="modal__button-reset" type="button" onClick={onClose}>
           <img src={closeImage} alt="close button" className="modal__close" />

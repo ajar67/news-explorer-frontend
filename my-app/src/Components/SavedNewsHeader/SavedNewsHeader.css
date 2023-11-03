@@ -1,0 +1,60 @@
+@import url("../../vendor/fonts.css");
+
+.header__section_saved {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  height: 80px;
+  padding-left: 100px;
+  padding-right: 100px;
+  border-bottom: 0.05px solid rgba(26, 27, 34, 1);
+  background-color: white;
+}
+
+.header__title_saved {
+  color: white;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.header__options_saved {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.header__home_saved {
+  color: rgba(26, 27, 34, 0.5);
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.header__button_saved {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  border-bottom: 2px solid rgba(26, 27, 34, 0.5);
+}
+
+.header__button_signin {
+  width: 176px;
+  height: 48px;
+  border: 1px solid #fff;
+  border-radius: 40px;
+  background: none;
+  color: white;
+}
+
+.header__button_signin:hover {
+  opacity: 0.5;
+}

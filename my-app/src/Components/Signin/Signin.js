@@ -24,7 +24,7 @@ const Signin = ({ onClose, buttonText, isOpen, onCreateSignup }) => {
     }
   };
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
