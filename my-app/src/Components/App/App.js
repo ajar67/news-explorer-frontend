@@ -1,9 +1,10 @@
 //import logo from '../../Images/logo.svg';
 import "./App.css";
 import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import SearchResults from "../SearchResults/SearchResults";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Signin from "../Signin/Signin";
@@ -11,7 +12,9 @@ import Signup from "../Signup/Signup";
 import SavedNews from "../SavedNews/SavedNews";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [searchFocus, setSearchFocus] = useState(true);
+  const location = useLocation();
   ////////////////////////////////////// handling all modals ////////////////////////////////////////
   const [modals, setModals] = useState({
     signin: false,
@@ -83,9 +86,18 @@ function App() {
     <div className="app">
       <Switch>
         <Route exact path="/">
-          <div className="container">
+          <div
+            className={
+              location.pathname === "/saved-articles"
+                ? "container__saved"
+                : "container__home"
+            }
+          >
             <Header onCreateSignin={openSigninModal} loggedIn={loggedIn} />
             <Main />
+          </div>
+          <div className={searchFocus ? "app__cards" : "app__cards_hidden"}>
+            <SearchResults />
           </div>
           <About />
           <Footer />
