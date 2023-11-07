@@ -1,5 +1,5 @@
-.card__list{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.card__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

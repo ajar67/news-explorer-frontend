@@ -51,11 +51,14 @@
 .card__button {
   background-color: white;
   border-radius: 8px;
+  border: none;
   height: 40px;
   width: 40px;
 }
 
 .card__button_text {
+  position: absolute;
+  right: 65px;
   background-color: white;
   color: black;
   display: flex;
@@ -72,23 +75,14 @@
   line-height: 14.06px;
 }
 
-.card__button_text-hidden{
+.card__button_text-hidden {
   display: none;
 }
-
 
 .card__button_image {
   height: 24px;
   width: 24px;
 }
-
-/* .card__button_save:hover {
-  background-image: url("../../Images/save-hover.svg");
-}
-
-.card__button_trash {
-  background-image: url("../../Images/trash-hover.svg");
-} */
 
 .card__info {
   display: flex;

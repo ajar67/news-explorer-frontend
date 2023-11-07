@@ -37,7 +37,7 @@ const NewsCard = () => {
       <img
         src="https://media.glamourmagazine.co.uk/photos/647615867c99445ff389fce6/16:9/w_2580,c_limit/GREECE%20300523%20main.jpg"
         className="card__image"
-        alt="card image"
+        alt="card scenery"
       />
       <div className="card__picture_group">
         <p

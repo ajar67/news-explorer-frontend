@@ -1,6 +1,6 @@
 //import logo from '../../Images/logo.svg';
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -14,7 +14,7 @@ import Success from "../Success/Success";
 //import Preloader from '../Preloader/Preloader';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [searchFocus, setSearchFocus] = useState(true);
   const location = useLocation();
   ////////////////////////////////////// handling all modals ////////////////////////////////////////
@@ -47,26 +47,35 @@ function App() {
   };
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
-  /*useEffect(() => {
-    //if (!modals) return;
+
+  useEffect(() => {
     const closeModalDocClick = (e) => {
       if (
         Object.values(modals).some((isOpen) => isOpen) &&
         !e.target.closest(".modal__section")
       ) {
-        Object.keys(modals).forEach((modal) => {
-          if (modals[modal]) {
-            setModals({ ...modals, [modal]: false });
-          }
+        setModals((prevModals) => {
+          const updatedModals = { ...prevModals };
+          Object.keys(updatedModals).forEach((modal) => {
+            if (updatedModals[modal]) {
+              updatedModals[modal] = false;
+            }
+          });
+          return updatedModals;
         });
       }
     };
+
     const closeByEscape = (e) => {
       if (e.key === "Escape") {
-        Object.keys(modals).forEach((modal) => {
-          if (modals[modal]) {
-            setModals({ ...modals, [modal]: false });
-          }
+        setModals((prevModals) => {
+          const updatedModals = { ...prevModals };
+          Object.keys(updatedModals).forEach((modal) => {
+            if (updatedModals[modal]) {
+              updatedModals[modal] = false;
+            }
+          });
+          return updatedModals;
         });
       }
     };
@@ -79,7 +88,6 @@ function App() {
       document.removeEventListener("keydown", closeByEscape);
     };
   }, [modals]);
-  */
 
   return (
     <div className="app">
@@ -102,7 +110,7 @@ function App() {
           <Footer />
         </Route>
         <Route path="/saved-articles">
-          <SavedNews />
+          <SavedNews loggedIn={loggedIn}/>
         </Route>
       </Switch>
       {modals.signin && (
