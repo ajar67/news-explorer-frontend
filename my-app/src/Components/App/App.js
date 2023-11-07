@@ -48,46 +48,47 @@ function App() {
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
 
-  useEffect(() => {
-    const closeModalDocClick = (e) => {
-      if (
-        Object.values(modals).some((isOpen) => isOpen) &&
-        !e.target.closest(".modal__section")
-      ) {
-        setModals((prevModals) => {
-          const updatedModals = { ...prevModals };
-          Object.keys(updatedModals).forEach((modal) => {
-            if (updatedModals[modal]) {
-              updatedModals[modal] = false;
-            }
-          });
-          return updatedModals;
-        });
-      }
-    };
+  // useEffect(() => {
+  //   if (!modals) return;
+  //   const closeModalDocClick = (e) => {
+  //     if (
+  //       Object.values(modals).some((isOpen) => isOpen) &&
+  //       !e.target.closest(".modal__section")
+  //     ) {
+  //       setModals((prevModals) => {
+  //         const updatedModals = { ...prevModals };
+  //         Object.keys(updatedModals).forEach((modal) => {
+  //           if (updatedModals[modal]) {
+  //             updatedModals[modal] = false;
+  //           }
+  //         });
+  //         return updatedModals;
+  //       });
+  //     }
+  //   };
 
-    const closeByEscape = (e) => {
-      if (e.key === "Escape") {
-        setModals((prevModals) => {
-          const updatedModals = { ...prevModals };
-          Object.keys(updatedModals).forEach((modal) => {
-            if (updatedModals[modal]) {
-              updatedModals[modal] = false;
-            }
-          });
-          return updatedModals;
-        });
-      }
-    };
+  //   const closeByEscape = (e) => {
+  //     if (e.key === "Escape") {
+  //       setModals((prevModals) => {
+  //         const updatedModals = { ...prevModals };
+  //         Object.keys(updatedModals).forEach((modal) => {
+  //           if (updatedModals[modal]) {
+  //             updatedModals[modal] = false;
+  //           }
+  //         });
+  //         return updatedModals;
+  //       });
+  //     }
+  //   };
 
-    document.addEventListener("click", closeModalDocClick);
-    document.addEventListener("keydown", closeByEscape);
+  //   document.addEventListener("click", closeModalDocClick);
+  //   document.addEventListener("keydown", closeByEscape);
 
-    return () => {
-      document.removeEventListener("click", closeModalDocClick);
-      document.removeEventListener("keydown", closeByEscape);
-    };
-  }, [modals]);
+  //   return () => {
+  //     document.removeEventListener("click", closeModalDocClick);
+  //     document.removeEventListener("keydown", closeByEscape);
+  //   };
+  // }, [modals]);
 
   return (
     <div className="app">
@@ -110,7 +111,7 @@ function App() {
           <Footer />
         </Route>
         <Route path="/saved-articles">
-          <SavedNews loggedIn={loggedIn}/>
+          <SavedNews loggedIn={loggedIn} />
         </Route>
       </Switch>
       {modals.signin && (
@@ -133,7 +134,6 @@ function App() {
       {modals.success && (
         <Success
           onCreateSuccess={openSuccessModal}
-          buttonText="Registartion successfully completed!"
           onClose={() => closeModal("success")}
           isOpen={modals.success === true}
         />
