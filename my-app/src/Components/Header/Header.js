@@ -7,13 +7,13 @@ import logoutWhite from "../../Images/logout-white.svg";
 const Header = ({ onCreateSignin, loggedIn }) => {
   return (
     <header className="header__section">
-      <Link to="/">
+      <Link to="/" className="header__links">
         <p className="header__title">NewsExplorer</p>
       </Link>
       {loggedIn ? (
         <div className="header__options">
           <p className="header__home">Home</p>
-          <Link to="/saved-articles">
+          <Link to="/saved-articles" className="header__links">
             <p className="header__articles">Saved articles</p>
           </Link>
           <div className="header__profile">

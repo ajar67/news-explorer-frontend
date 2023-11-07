@@ -7,11 +7,11 @@ import logoutBlack from "../../Images/logout-black.svg";
 const SavedNewsHeader = () => {
   return (
     <header className="header__section_saved">
-      <Link to="/">
+      <Link to="/" className="header__links_saved">
         <p className="header__title_saved">NewsExplorer</p>
       </Link>
       <div className="header__options_saved">
-        <Link to="/">
+        <Link to="/" className="header__links_saved">
           <p className="header__home_saved">Home</p>
         </Link>
         <p className="header__articles_saved">Saved articles</p>

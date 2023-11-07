@@ -14,7 +14,7 @@ import Success from "../Success/Success";
 //import Preloader from '../Preloader/Preloader';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [searchFocus, setSearchFocus] = useState(true);
   const location = useLocation();
   ////////////////////////////////////// handling all modals ////////////////////////////////////////
