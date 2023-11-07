@@ -12,9 +12,7 @@ const Header = ({ onCreateSignin, loggedIn }) => {
       </Link>
       {loggedIn ? (
         <div className="header__options">
-          <Link to="/">
-            <p className="header__home">Home</p>
-          </Link>
+          <p className="header__home">Home</p>
           <Link to="/saved-articles">
             <p className="header__articles">Saved articles</p>
           </Link>

@@ -31,6 +31,10 @@
   height: 438px;
 }
 
+.modal__content_succes{
+  height: 182px;
+}
+
 .modal__button-reset {
   position: absolute;
   right: -40px;

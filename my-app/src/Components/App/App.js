@@ -10,9 +10,11 @@ import Footer from "../Footer/Footer";
 import Signin from "../Signin/Signin";
 import Signup from "../Signup/Signup";
 import SavedNews from "../SavedNews/SavedNews";
+import Success from "../Success/Success";
+//import Preloader from '../Preloader/Preloader';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [searchFocus, setSearchFocus] = useState(true);
   const location = useLocation();
   ////////////////////////////////////// handling all modals ////////////////////////////////////////
@@ -22,29 +24,26 @@ function App() {
     success: false,
   });
   const openModal = (modal) => {
-    setModals({ ...modals, [modal]: true });
+    setModals((prevModals) => ({ ...prevModals, [modal]: true }));
   };
   const closeModal = (modal) => {
-    setModals({ ...modals, [modal]: false });
+    setModals((prevModals) => ({ ...prevModals, [modal]: false }));
   };
 
   ////////////////////////////////////// function for when pressing on signin or signup buttons ////////////////////////////////////////
-  const closeSignupModal = () => {
-    closeModal("signup");
-  };
-
   const openSigninModal = () => {
     closeModal("signup");
     openModal("signin");
   };
 
-  const closeSigninModal = () => {
-    closeModal("signin");
-  };
-
   const openSignupModal = () => {
     closeModal("signin");
     openModal("signup");
+  };
+
+  const openSuccessModal = () => {
+    closeModal("signup");
+    openModal("success");
   };
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
@@ -110,16 +109,25 @@ function App() {
         <Signin
           onCreateSignup={openSignupModal}
           buttonText="Sign in"
-          onClose={closeSigninModal}
+          onClose={() => closeModal("signin")}
           isOpen={modals.signin === true}
         />
       )}
       {modals.signup && (
         <Signup
           onCreateSignin={openSigninModal}
+          onCreateSuccess={openSuccessModal}
           buttonText="Sign up"
-          onClose={closeSignupModal}
+          onClose={() => closeModal("signup")}
           isOpen={modals.signup === true}
+        />
+      )}
+      {modals.success && (
+        <Success
+          onCreateSuccess={openSuccessModal}
+          buttonText="Registartion successfully completed!"
+          onClose={() => closeModal("success")}
+          isOpen={modals.success === true}
         />
       )}
     </div>

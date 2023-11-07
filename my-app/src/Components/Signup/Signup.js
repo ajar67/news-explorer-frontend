@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-const Signup = ({ onClose, buttonText, isOpen, onCreateSignin }) => {
+const Signup = ({ onClose, buttonText, isOpen, onCreateSignin, onCreateSuccess }) => {
   // props for open opposite modal {onCreateSigninModal}, onSubmit for the form
   const [formErrors, setFormErrors] = useState({
     email: "Enter a valid email",
@@ -57,6 +57,7 @@ const Signup = ({ onClose, buttonText, isOpen, onCreateSignin }) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    onCreateSuccess();
     //onSubmit({ email, password });
   }
   return (

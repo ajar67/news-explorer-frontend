@@ -59,19 +59,6 @@
   border-bottom: 2px solid rgba(26, 27, 34, 1);
 }
 
-.header__button_signin {
-  width: 176px;
-  height: 48px;
-  border: 2px solid rgba(26, 27, 34, 1);
-  border-radius: 40px;
-  background: none;
-  color: white;
-}
-
-.header__button_signin:hover {
-  opacity: 0.5;
-}
-
 .header__profile_saved {
   display: flex;
   flex-direction: row;
