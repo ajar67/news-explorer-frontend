@@ -14,8 +14,9 @@ import Success from "../Success/Success";
 //import Preloader from '../Preloader/Preloader';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [searchFocus, setSearchFocus] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
   ////////////////////////////////////// handling all modals ////////////////////////////////////////
   const [modals, setModals] = useState({
@@ -90,6 +91,18 @@ function App() {
   //   };
   // }, [modals]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize());
+    return () => {
+      window.removeEventListener("resize", handleResize());
+    };
+  }, []);
+
+  console.log({ windowWidth });
+
   return (
     <div className="app">
       <Switch>
@@ -101,8 +114,12 @@ function App() {
                 : "container__home"
             }
           >
-            <Header onCreateSignin={openSigninModal} loggedIn={loggedIn} />
-            <Main />
+            <Header
+              onCreateSignin={openSigninModal}
+              loggedIn={loggedIn}
+              windowWidth={windowWidth}
+            />
+            <Main windowWidth={windowWidth} />
           </div>
           <div className={searchFocus ? "app__cards" : "app__cards_hidden"}>
             <SearchResults />
@@ -111,7 +128,7 @@ function App() {
           <Footer />
         </Route>
         <Route path="/saved-articles">
-          <SavedNews loggedIn={loggedIn} />
+          <SavedNews loggedIn={loggedIn} windowWidth={windowWidth} />
         </Route>
       </Switch>
       {modals.signin && (

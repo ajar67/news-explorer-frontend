@@ -2,7 +2,7 @@
 
 .results {
   display: flex;
-  padding: 75px 100px;
+  padding: 75px 85px;
   background-color: rgba(245, 246, 247, 1);
   flex-direction: column;
   justify-content: space-between;
@@ -42,4 +42,34 @@
 
 .results__button_text:hover {
   opacity: 0.5;
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .results {
+    padding: 35px 25px;
+  }
+  .results__title {
+    font-size: 30px;
+    line-height: 34px;
+  }
+  .results__button_text {
+    width: 240px;
+    height: 56px;
+    background-color: #fff;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 399px) {
+  .results {
+    padding: 30px 10px;
+  }
+  .results__title {
+    font-size: 30px;
+    line-height: 34px;
+  }
+  .results__button_text {
+    width: 240px;
+    height: 56px;
+    background-color: #fff;
+  }
 }

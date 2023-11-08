@@ -3,9 +3,19 @@ import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import logoutWhite from "../../Images/logout-white.svg";
+import menuWhite from "../../Images/menu-white.svg";
 
-const Header = ({ onCreateSignin, loggedIn }) => {
-  return (
+const Header = ({ onCreateSignin, loggedIn, windowWidth }) => {
+  return windowWidth < 400 ? (
+    <header className="header__section">
+      <Link to="/" className="header__links">
+        <p className="header__title">NewsExplorer</p>
+      </Link>
+      <button className='header__menu'>
+        <img src={menuWhite} alt="menu" className="header__menu-pic" />
+      </button>
+    </header>
+  ) : (
     <header className="header__section">
       <Link to="/" className="header__links">
         <p className="header__title">NewsExplorer</p>

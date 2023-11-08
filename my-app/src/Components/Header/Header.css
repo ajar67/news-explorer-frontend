@@ -6,11 +6,10 @@
   align-items: center;
   justify-content: space-between;
   height: 80px;
-  width: 1440px;
+  max-width: 1440px;
   padding-left: 100px;
   padding-right: 100px;
   border-bottom: 0.05px solid gray;
-  text-decoration: none;
   box-sizing: border-box;
 }
 
@@ -91,4 +90,43 @@
   height: 24px;
 }
 
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .header__section {
+    height: 66px;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
 
+  .header__options {
+    gap: 20px;
+  }
+
+  .header__home {
+    width: 64px;
+    height: 66px;
+  }
+
+  .header__button_signin {
+    width: 152px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 399px) {
+  .header__section {
+    height: 56px;
+    max-width: 399px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 0.05px solid gray;
+    box-sizing: border-box;
+  }
+  .header__title {
+    font-size: 16px;
+    color: black;
+  }
+  .header__menu {
+    background: none;
+    border: none;
+  }
+}

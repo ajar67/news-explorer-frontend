@@ -3,13 +3,13 @@
 import React from "react";
 import "./SavedNews.css";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
-import NewsCard from "../NewsCard/NewsCard";
+import NewsCardsList from "../NewsCardsList/NewsCardsList";
 import Footer from "../Footer/Footer";
 
-const SavedNews = () => {
+const SavedNews = ({ windowWidth }) => {
   return (
     <>
-      <SavedNewsHeader />
+      <SavedNewsHeader windowWidth={windowWidth} />
       <div className="saved__section">
         <div className="saved__header">
           <p className="saved__articles">Saved articles</p>
@@ -23,7 +23,7 @@ const SavedNews = () => {
         </div>
       </div>
       <div className="saved__cards">
-        <NewsCard />
+        <NewsCardsList />
       </div>
       <Footer />
     </>

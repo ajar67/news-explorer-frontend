@@ -56,3 +56,18 @@
   border-bottom: 1px solid rgba(230, 232, 235, 1);
   color: rgba(230, 232, 235, 1);
 }
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .container__home {
+    height: 400px;
+  }
+  .container__saved {
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 399px) {
+  .container__home {
+    height: 536px;
+  }
+}

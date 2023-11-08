@@ -8,6 +8,9 @@ const NewsCardsList = () => {
   return (
     <div className="card__list">
       <NewsCard />
+      <NewsCard />
+      <NewsCard />
+      <NewsCard />
     </div>
   );
 };

@@ -4,7 +4,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 3px solid black;
   border-radius: 15px;
   width: 400px;
   height: 576px;
@@ -42,6 +41,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
+  margin: 0;
 }
 
 .card__category_none {
@@ -96,6 +96,8 @@
   flex: 1 1 auto;
   border-radius: 0 0 15px 15px;
   gap: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__date {
@@ -111,7 +113,6 @@
 }
 
 .card__title {
-  height: 60px;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
@@ -125,14 +126,11 @@
 }
 
 .card__description {
-  height: 110px;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  width: 352px;
+  max-width: 352px;
   height: 110px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -149,4 +147,54 @@
   line-height: 20px;
   color: rgba(182, 188, 191, 1);
   letter-spacing: 0.4px;
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .card {
+    width: 224px;
+    height: 420px;
+  }
+  .card__image {
+    width: 224px;
+    height: 150px;
+  }
+  .card__picture_group {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    width: 204px;
+  }
+  .card__info {
+    padding: 15px 10px;
+  }
+  .card__button_text {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 399px) {
+  .card {
+    width: 288px;
+    height: 444px;
+  }
+  .card__image {
+    width: 288px;
+    height: 196px;
+  }
+  .card__title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+  .card__picture_group {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    width: 268px;
+  }
+  .card__info {
+    padding: 15px 10px;
+  }
+  .card__button_text {
+    display: none;
+  }
 }

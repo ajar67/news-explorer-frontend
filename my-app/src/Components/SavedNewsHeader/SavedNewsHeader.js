@@ -3,9 +3,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./SavedNewsHeader.css";
 import logoutBlack from "../../Images/logout-black.svg";
+import menuBlack from "../../Images/menu-black.svg";
 
-const SavedNewsHeader = () => {
-  return (
+const SavedNewsHeader = ({ windowWidth }) => {
+  return windowWidth < 400 ? (
+    <header className="header__section">
+      <Link to="/" className="header__links">
+        <p className="header__title">NewsExplorer</p>
+      </Link>
+      <button className="header__menu">
+        <img src={menuBlack} alt="menu" className="header__menu-pic" />
+      </button>
+    </header>
+  ) : (
     <header className="header__section_saved">
       <Link to="/" className="header__links_saved">
         <p className="header__title_saved">NewsExplorer</p>

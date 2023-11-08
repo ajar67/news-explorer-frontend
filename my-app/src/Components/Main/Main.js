@@ -3,10 +3,10 @@ import "./Main.css";
 import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 
-const Main = () => {
+const Main = ({ windowWidth }) => {
   return (
     <div className="main__section">
-      <div>
+      <div className="main__content">
         <h1 className="main__title">What's going on in the world?</h1>
         <p className="main__para">
           Find the latest news on any topic and save them in your personal
@@ -14,7 +14,7 @@ const Main = () => {
         </p>
       </div>
       <div>
-        <SearchForm />
+        <SearchForm windowWidth={windowWidth} />
       </div>
     </div>
   );

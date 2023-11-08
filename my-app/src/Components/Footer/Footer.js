@@ -9,8 +9,10 @@ const Footer = () => {
     <div className="footer__section">
       <p className="footer__copyright">© 2020 Supersite, Powered by News API</p>
       <div className="footer__content">
-        <p>Home</p>
-        <p>Practicum</p>
+        <div className="footer__names">
+          <p className="footer__name">Home</p>
+          <p className="footer__name">Practicum</p>
+        </div>
         <div className="footer__icons">
           <img className="footer__icon" src={github} alt="github icon" />
           <img className="footer__icon" src={facebook} alt="facebook icon" />

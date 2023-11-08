@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   height: 80px;
-  width: 1440px;
+  max-width: 1440px;
   padding-left: 100px;
   padding-right: 100px;
   border-bottom: 0.05px solid gray;
@@ -87,4 +87,50 @@
 .header__image {
   width: 24px;
   height: 24px;
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .header__section_saved {
+    height: 66px;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  .header__articles_saved {
+    width: 160px;
+    height: 66px;
+  }
+  .header__profile_saved {
+    width: 100px;
+    height: 40px;
+    border: 2px solid rgba(209, 210, 214, 1);
+  }
+  .header__name_saved {
+    padding-left: 5px;
+  }
+
+  .header__options_saved {
+    gap: 20px;
+  }
+
+  .header__home_saved {
+    width: 64px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 399px) {
+  .header__section {
+    height: 56px;
+    max-width: 399px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 0.05px solid gray;
+    box-sizing: border-box;
+  }
+  .header__title {
+    font-size: 16px;
+  }
+  .header__menu {
+    background: none;
+    border: none;
+  }
 }

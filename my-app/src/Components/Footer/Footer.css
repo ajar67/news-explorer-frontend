@@ -16,6 +16,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
+  color: rgba(182, 188, 191, 1);
 }
 
 .footer__content {
@@ -28,6 +29,14 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+  color: black;
+}
+
+.footer__names{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .footer__icons {
@@ -38,4 +47,46 @@
 
 .footer__icon {
   width: 24px;
+}
+
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .footer__section {
+    height: 64px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .footer__content {
+    gap: 40px;
+  }
+  .footer__icons {
+    gap: 25px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 399px) {
+  .footer__section {
+    flex-direction: column-reverse;
+    max-height: 176px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 100px;
+  }
+  .footer__content {
+    height: 88px;
+    align-items: flex-start;
+    padding-bottom: 20px;
+  }
+  .footer__name {
+    margin: 0;
+  }
+  .footer__names {
+    display: flex;
+    flex-direction: column;
+    width: 74px;
+    gap: 15px;
+    margin: 0;
+  }
+  .footer__copyright {
+    width: 288px;
+  }
 }
