@@ -15,7 +15,7 @@ import MenuModal from "../Menumodal/MenuModal";
 //import Preloader from '../Preloader/Preloader';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [searchFocus, setSearchFocus] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
@@ -111,7 +111,7 @@ function App() {
           <Footer />
         </Route>
         <Route path="/saved-articles">
-          <SavedNews loggedIn={loggedIn} windowWidth={windowWidth} />
+          <SavedNews loggedIn={loggedIn} windowWidth={windowWidth} onCreateMenu={openMenuModal} />
         </Route>
       </Switch>
       {modals.signin && (

@@ -6,10 +6,10 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import NewsCardsList from "../NewsCardsList/NewsCardsList";
 import Footer from "../Footer/Footer";
 
-const SavedNews = ({ windowWidth }) => {
+const SavedNews = ({ windowWidth, onCreateMenu }) => {
   return (
     <>
-      <SavedNewsHeader windowWidth={windowWidth} />
+      <SavedNewsHeader windowWidth={windowWidth} onCreateMenu={onCreateMenu}/>
       <div className="saved__section">
         <div className="saved__header">
           <p className="saved__articles">Saved articles</p>

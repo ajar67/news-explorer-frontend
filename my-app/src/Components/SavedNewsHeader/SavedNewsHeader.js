@@ -5,13 +5,13 @@ import "./SavedNewsHeader.css";
 import logoutBlack from "../../Images/logout-black.svg";
 import menuBlack from "../../Images/menu-black.svg";
 
-const SavedNewsHeader = ({ windowWidth }) => {
+const SavedNewsHeader = ({ windowWidth, onCreateMenu }) => {
   return windowWidth < 400 ? (
     <header className="header__section">
       <Link to="/" className="header__links">
         <p className="header__title">NewsExplorer</p>
       </Link>
-      <button className="header__menu">
+      <button className="header__menu" type='button' onClick={onCreateMenu}>
         <img src={menuBlack} alt="menu" className="header__menu-pic" />
       </button>
     </header>

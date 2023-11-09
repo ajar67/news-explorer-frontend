@@ -131,6 +131,9 @@
     font-size: 16px;
     color: white;
   }
+  .header__title-white {
+    color: white;
+  }
   .header__menu {
     background: none;
     border: none;

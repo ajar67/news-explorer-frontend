@@ -114,6 +114,9 @@
     width: 288px;
   }
   .saved__cards {
-    padding: 15px 10px;
+    padding: 0;
+    padding-top: 15px;
+    justify-content: center;
+    align-items: center;
   }
 }
