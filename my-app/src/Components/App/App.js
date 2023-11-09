@@ -11,10 +11,11 @@ import Signin from "../Signin/Signin";
 import Signup from "../Signup/Signup";
 import SavedNews from "../SavedNews/SavedNews";
 import Success from "../Success/Success";
+import MenuModal from "../Menumodal/MenuModal";
 //import Preloader from '../Preloader/Preloader';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [searchFocus, setSearchFocus] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
     signin: false,
     signup: false,
     success: false,
+    menu: false,
   });
   const openModal = (modal) => {
     setModals((prevModals) => ({ ...prevModals, [modal]: true }));
@@ -32,7 +34,12 @@ function App() {
   };
 
   ////////////////////////////////////// function for when pressing on signin or signup buttons ////////////////////////////////////////
+  const openMenuModal = () => {
+    openModal("menu");
+  };
+
   const openSigninModal = () => {
+    closeModal("menu");
     closeModal("signup");
     openModal("signin");
   };
@@ -49,47 +56,24 @@ function App() {
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
 
-  // useEffect(() => {
-  //   if (!modals) return;
-  //   const closeModalDocClick = (e) => {
-  //     if (
-  //       Object.values(modals).some((isOpen) => isOpen) &&
-  //       !e.target.closest(".modal__section")
-  //     ) {
-  //       setModals((prevModals) => {
-  //         const updatedModals = { ...prevModals };
-  //         Object.keys(updatedModals).forEach((modal) => {
-  //           if (updatedModals[modal]) {
-  //             updatedModals[modal] = false;
-  //           }
-  //         });
-  //         return updatedModals;
-  //       });
-  //     }
-  //   };
+  useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === "Escape") {
+        setModals({
+          signin: false,
+          signup: false,
+          success: false,
+          menu: false,
+        });
+      }
+    };
 
-  //   const closeByEscape = (e) => {
-  //     if (e.key === "Escape") {
-  //       setModals((prevModals) => {
-  //         const updatedModals = { ...prevModals };
-  //         Object.keys(updatedModals).forEach((modal) => {
-  //           if (updatedModals[modal]) {
-  //             updatedModals[modal] = false;
-  //           }
-  //         });
-  //         return updatedModals;
-  //       });
-  //     }
-  //   };
+    document.addEventListener("keydown", closeByEscape);
 
-  //   document.addEventListener("click", closeModalDocClick);
-  //   document.addEventListener("keydown", closeByEscape);
-
-  //   return () => {
-  //     document.removeEventListener("click", closeModalDocClick);
-  //     document.removeEventListener("keydown", closeByEscape);
-  //   };
-  // }, [modals]);
+    return () => {
+      document.removeEventListener("keydown", closeByEscape);
+    };
+  }, [modals]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -100,8 +84,6 @@ function App() {
       window.removeEventListener("resize", handleResize());
     };
   }, []);
-
-  console.log({ windowWidth });
 
   return (
     <div className="app">
@@ -116,6 +98,7 @@ function App() {
           >
             <Header
               onCreateSignin={openSigninModal}
+              onCreateMenu={openMenuModal}
               loggedIn={loggedIn}
               windowWidth={windowWidth}
             />
@@ -137,6 +120,7 @@ function App() {
           buttonText="Sign in"
           onClose={() => closeModal("signin")}
           isOpen={modals.signin === true}
+          setModals={setModals}
         />
       )}
       {modals.signup && (
@@ -146,6 +130,7 @@ function App() {
           buttonText="Sign up"
           onClose={() => closeModal("signup")}
           isOpen={modals.signup === true}
+          setModals={setModals}
         />
       )}
       {modals.success && (
@@ -153,6 +138,16 @@ function App() {
           onCreateSuccess={openSuccessModal}
           onClose={() => closeModal("success")}
           isOpen={modals.success === true}
+          setModals={setModals}
+        />
+      )}
+      {modals.menu && (
+        <MenuModal
+          onCreateMenu={openMenuModal}
+          onCreateSignin={openSigninModal}
+          onClose={() => closeModal("menu")}
+          isOpen={modals.menu === true}
+          setModals={setModals}
         />
       )}
     </div>

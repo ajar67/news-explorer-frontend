@@ -4,15 +4,32 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import logoutWhite from "../../Images/logout-white.svg";
 import menuWhite from "../../Images/menu-white.svg";
+import closeButton from "../../Images/closeButton.svg";
 
-const Header = ({ onCreateSignin, loggedIn, windowWidth }) => {
+const Header = ({
+  onCreateSignin,
+  loggedIn,
+  windowWidth,
+  name,
+  onCreateMenu,
+  isOpen,
+  onClose,
+}) => {
   return windowWidth < 400 ? (
-    <header className="header__section">
+    <header className={`header__section header__section_${name}`}>
       <Link to="/" className="header__links">
         <p className="header__title">NewsExplorer</p>
       </Link>
-      <button className='header__menu'>
-        <img src={menuWhite} alt="menu" className="header__menu-pic" />
+      <button
+        className="header__menu"
+        type="button"
+        onClick={isOpen ? onClose : onCreateMenu}
+      >
+        <img
+          src={isOpen ? closeButton : menuWhite}
+          alt="menu"
+          className="header__menu-pic"
+        />
       </button>
     </header>
   ) : (

@@ -8,5 +8,6 @@
 @media screen and (min-width: 300px) and (max-width: 800px) {
   .card__list {
     gap: 5px;
+    justify-content: center;
   }
 }

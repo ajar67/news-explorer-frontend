@@ -7,6 +7,7 @@ const Signup = ({
   isOpen,
   onCreateSignin,
   onCreateSuccess,
+  setModals,
 }) => {
   // props for open opposite modal {onCreateSigninModal}, onSubmit for the form
   const [formErrors, setFormErrors] = useState({
@@ -74,6 +75,7 @@ const Signup = ({
       isSubmitDisabled={isSubmitDisabled}
       buttonText={buttonText}
       name="signup"
+      setModals={setModals}
     >
       <label className="modal__info">
         Email

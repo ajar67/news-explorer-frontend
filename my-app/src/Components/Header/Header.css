@@ -121,9 +121,15 @@
     border-bottom: 0.05px solid gray;
     box-sizing: border-box;
   }
+  .header__section_menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
   .header__title {
     font-size: 16px;
-    color: black;
+    color: white;
   }
   .header__menu {
     background: none;
