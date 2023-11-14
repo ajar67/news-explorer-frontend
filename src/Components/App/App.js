@@ -134,8 +134,6 @@ function App() {
     };
   }, [windowWidth]);
 
-  setLoggedIn(loggedIn);
-
   return (
     <div className="app">
       <Switch>
