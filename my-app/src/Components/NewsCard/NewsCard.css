@@ -96,8 +96,6 @@
   flex: 1 1 auto;
   border-radius: 0 0 15px 15px;
   gap: 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .card__date {
@@ -110,19 +108,24 @@
   font-size: 18px;
   line-height: 24px;
   height: 24px;
+  overflow: hidden;
+
+  text-overflow: ellipsis;
 }
 
 .card__title {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  width: 352px;
+  max-width: 352px;
   height: 60px;
   font-family: "Roboto Slab", sans-serif;
   font-weight: 400;
   font-size: 26px;
   line-height: 30px;
   color: rgba(26, 27, 34, 1);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__description {
@@ -136,6 +139,8 @@
   font-size: 16px;
   line-height: 22px;
   color: rgba(26, 27, 34, 1);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__author {

@@ -180,6 +180,17 @@
   opacity: 0.5;
 }
 
+.error {
+  color: rgba(255, 0, 0, 1);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.52px;
+}
+.error__none {
+  display: none;
+}
+
 @media screen and (min-width: 300px) and (max-width: 399px) {
   .modal__section {
     align-items: flex-start;

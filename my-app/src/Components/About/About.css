@@ -57,9 +57,10 @@
   }
   .about__text {
     padding-top: 40px;
+    display: block;
   }
   .about__para {
-    width: 424px;
+    width: 100%;
   }
 }
 

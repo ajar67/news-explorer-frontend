@@ -12,11 +12,14 @@ import Signup from "../Signup/Signup";
 import SavedNews from "../SavedNews/SavedNews";
 import Success from "../Success/Success";
 import MenuModal from "../Menumodal/MenuModal";
-//import Preloader from '../Preloader/Preloader';
+import { getCards, saveCard, deleteCard } from "../../utils/NewsApi";
+import Preloader from "../Preloader/Preloader";
+import NothingFound from "../NothingFound/NothingFound";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
-  const [searchFocus, setSearchFocus] = useState(true);
+  const [searchFocus, setSearchFocus] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
   ////////////////////////////////////// handling all modals ////////////////////////////////////////
@@ -52,6 +55,50 @@ function App() {
   const openSuccessModal = () => {
     closeModal("signup");
     openModal("success");
+  };
+
+  const handleLoading = () => {
+    setIsLoading((state) => !state);
+  };
+
+  ///////////////////////////////////////////////////  API functions  /////////////////////////////////////////////
+
+  ////////////getting the cards////////////////////////
+
+  const [cardsData, setCardsData] = useState([]);
+  const handleSearchResults = ({
+    userInput,
+    apiKey,
+    fromDate,
+    toDate,
+    pageSize,
+  }) => {
+    handleLoading();
+    getCards({ userInput, apiKey, fromDate, toDate, pageSize })
+      .then((res) => {
+        console.log(res.articles);
+        setIsLoading(false);
+        setSearchFocus(true);
+        setCardsData(res.articles);
+      })
+      .catch((err) => {
+        console.error(err.message, "cant get cards!");
+      });
+  };
+
+  ////////////taking care of the saving button toggle////////////////////////
+
+  const [savedCards, setSavedCards] = useState([]);
+  const handleSavingToggle = (cardData ) => {
+    saveCard(cardData )
+      .then((res) => {
+        console.log({ res });
+       // setCardsData((card) => (card.url === url ? res : card));
+        const savedCard = { ...res };
+        console.log({ savedCard });
+        setSavedCards([savedCard, ...savedCards]);
+      })
+      .catch((err) => console.error(err, "didnt save card"));
   };
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
@@ -102,16 +149,41 @@ function App() {
               loggedIn={loggedIn}
               windowWidth={windowWidth}
             />
-            <Main windowWidth={windowWidth} />
+            <Main windowWidth={windowWidth} onSearch={handleSearchResults} />
           </div>
-          <div className={searchFocus ? "app__cards" : "app__cards_hidden"}>
-            <SearchResults />
+          <div className={isLoading ? "preloader" : "preloader_hidden"}>
+            <Preloader />
+          </div>
+          <div
+            className={
+              cardsData.length === 0 && searchFocus === true
+                ? "nothing__section"
+                : "nothing__section_hidden"
+            }
+          >
+            <NothingFound />
+          </div>
+          <div
+            className={
+              cardsData.length > 0 ? "app__cards" : "app__cards_hidden"
+            }
+          >
+            <SearchResults
+              cardsData={cardsData}
+              onLikeCard={handleSavingToggle}
+              loggedIn={loggedIn}
+            />
           </div>
           <About />
           <Footer />
         </Route>
         <Route path="/saved-articles">
-          <SavedNews loggedIn={loggedIn} windowWidth={windowWidth} onCreateMenu={openMenuModal} />
+          <SavedNews
+            loggedIn={loggedIn}
+            windowWidth={windowWidth}
+            onCreateMenu={openMenuModal}
+            savedCards={savedCards}
+          />
         </Route>
       </Switch>
       {modals.signin && (

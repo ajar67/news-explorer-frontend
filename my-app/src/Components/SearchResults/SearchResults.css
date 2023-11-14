@@ -24,7 +24,7 @@
   align-items: center;
 }
 
-.results__button_text {
+.results__button-text {
   width: 288px;
   height: 64px;
   color: black;
@@ -38,6 +38,10 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
+}
+
+.results__button-text_hidden {
+  display: none;
 }
 
 .results__button_text:hover {

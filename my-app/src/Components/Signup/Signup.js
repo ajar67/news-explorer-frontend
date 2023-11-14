@@ -9,7 +9,7 @@ const Signup = ({
   onCreateSuccess,
   setModals,
 }) => {
-  // props for open opposite modal {onCreateSigninModal}, onSubmit for the form
+  
   const [formErrors, setFormErrors] = useState({
     email: "Enter a valid email",
     password: "Enter a password",

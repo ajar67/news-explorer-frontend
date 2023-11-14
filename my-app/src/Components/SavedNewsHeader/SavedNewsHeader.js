@@ -11,7 +11,7 @@ const SavedNewsHeader = ({ windowWidth, onCreateMenu }) => {
       <Link to="/" className="header__links">
         <p className="header__title">NewsExplorer</p>
       </Link>
-      <button className="header__menu" type='button' onClick={onCreateMenu}>
+      <button className="header__menu" type="button" onClick={onCreateMenu}>
         <img src={menuBlack} alt="menu" className="header__menu-pic" />
       </button>
     </header>

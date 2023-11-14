@@ -18,7 +18,15 @@ const Header = ({
   return windowWidth < 400 ? (
     <header className={`header__section header__section_${name}`}>
       <Link to="/" className="header__links">
-        <p className={isOpen ? `header__title-white` : `header__title header__title_${name}`}>NewsExplorer</p>
+        <p
+          className={
+            isOpen
+              ? `header__title-white`
+              : `header__title header__title_${name}`
+          }
+        >
+          NewsExplorer
+        </p>
       </Link>
       <button
         className="header__menu"

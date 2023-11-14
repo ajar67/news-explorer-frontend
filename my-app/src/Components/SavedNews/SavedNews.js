@@ -6,10 +6,10 @@ import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import NewsCardsList from "../NewsCardsList/NewsCardsList";
 import Footer from "../Footer/Footer";
 
-const SavedNews = ({ windowWidth, onCreateMenu }) => {
+const SavedNews = ({ windowWidth, onCreateMenu, savedCards }) => {
   return (
     <>
-      <SavedNewsHeader windowWidth={windowWidth} onCreateMenu={onCreateMenu}/>
+      <SavedNewsHeader windowWidth={windowWidth} onCreateMenu={onCreateMenu} />
       <div className="saved__section">
         <div className="saved__header">
           <p className="saved__articles">Saved articles</p>
@@ -23,7 +23,7 @@ const SavedNews = ({ windowWidth, onCreateMenu }) => {
         </div>
       </div>
       <div className="saved__cards">
-        <NewsCardsList />
+        <NewsCardsList cardsData={savedCards}/>
       </div>
       <Footer />
     </>

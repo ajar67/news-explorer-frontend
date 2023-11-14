@@ -3,7 +3,7 @@ import "./Main.css";
 import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 
-const Main = ({ windowWidth }) => {
+const Main = ({ windowWidth, onSearch }) => {
   return (
     <div className="main__section">
       <div className="main__content">
@@ -14,7 +14,7 @@ const Main = ({ windowWidth }) => {
         </p>
       </div>
       <div>
-        <SearchForm windowWidth={windowWidth} />
+        <SearchForm windowWidth={windowWidth} onSearch={onSearch} />
       </div>
     </div>
   );

@@ -15,7 +15,9 @@ const MenuModal = ({ onCreateSignin, isOpen, onClose, setModals }) => {
     >
       <Header windowWidth={320} name="menu" isOpen={isOpen} onClose={onClose} />
       <Link to="/" className="menu__links">
-        <p className="menu__home" onClick={onClose}>Home</p>
+        <p className="menu__home" onClick={onClose}>
+          Home
+        </p>
       </Link>
     </PopupWithForm>
   );

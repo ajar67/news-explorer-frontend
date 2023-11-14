@@ -5,11 +5,21 @@ import { useLocation } from "react-router-dom";
 import "./NewsCard.css";
 import saveNormal from "../../Images/save-normal.svg";
 import saveHover from "../../Images/save-hover.svg";
-//import saveMarked from "../../Images/save-marked.svg";
+import saveMarked from "../../Images/save-marked.svg";
 import trashNormal from "../../Images/trash-normal.svg";
 import trashHover from "../../Images/trash-hover.svg";
+//import { apiKey } from "../../utils/constants";
 
-const NewsCard = () => {
+const NewsCard = ({
+  date,
+  title,
+  description,
+  author,
+  image,
+  onLikeCard,
+  cardUrl,
+  loggedIn,
+}) => {
   const location = useLocation();
   const [saveSrc, setSaveSrc] = useState(saveNormal);
   const [trashSrc, setTrashSrc] = useState(trashNormal);
@@ -32,13 +42,26 @@ const NewsCard = () => {
       setButtonText("card__button_text-hidden");
     }
   };
+
+  const formatDate = (date) => {
+    const options = { year: "numeric", month: "long", day: "2-digit" };
+    const formattedDate = new Date(date).toLocaleDateString("en-US", options);
+    return formattedDate;
+  };
+
+  const [saveToggle, setSaveToggle] = useState(false);
+  const handleSaveToggle = () => {
+    if (loggedIn) {
+      onLikeCard(this);
+      setSaveToggle((prevSaveToggle) => !prevSaveToggle);
+    } else {
+      return;
+    }
+  };
+
   return (
-    <div className="card">
-      <img
-        src="https://media.glamourmagazine.co.uk/photos/647615867c99445ff389fce6/16:9/w_2580,c_limit/GREECE%20300523%20main.jpg"
-        className="card__image"
-        alt="card scenery"
-      />
+    <li className="card">
+      <img src={image} className="card__image" alt="card scenery" />
       <div className="card__picture_group">
         <p
           className={
@@ -59,23 +82,28 @@ const NewsCard = () => {
           onMouseOut={handleMouseOut}
           className="card__button"
           type="button"
+          onClick={handleSaveToggle}
         >
           <img
-            src={location.pathname === "/saved-articles" ? trashSrc : saveSrc}
+            src={
+              location.pathname === "/saved-articles"
+                ? trashSrc
+                : saveToggle
+                ? saveMarked
+                : saveSrc
+            }
             className="card__button_image"
             alt="card button"
           />
         </button>
       </div>
       <div className="card__info">
-        <p className="card__date">September 7, 2020</p>
-        <h2 className="card__title">card title</h2>
-        <p className="card__description">
-          this is where the card description of the image will go
-        </p>
-        <p className="card__author">treehugger</p>
+        <p className="card__date">{formatDate(date)}</p>
+        <h2 className="card__title">{title}</h2>
+        <p className="card__description">{description}</p>
+        <p className="card__author">{author}</p>
       </div>
-    </div>
+    </li>
   );
 };
 

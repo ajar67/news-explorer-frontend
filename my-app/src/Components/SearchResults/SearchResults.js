@@ -1,16 +1,34 @@
 //this is the component on the home page showing the results from the search
 
-import React from "react";
+import React, { useState } from "react";
 import "./SearchResults.css";
 import NewsCardsList from "../NewsCardsList/NewsCardsList";
 
-const SearchResults = () => {
+const SearchResults = ({ cardsData, onLikeCard, loggedIn }) => {
+  const [visibleCards, setVisibleCards] = useState(3);
+  const handleShowMore = () => {
+    setVisibleCards((prevVisibleCards) => prevVisibleCards + 3);
+  };
+
   return (
     <div className="results">
       <h2 className="results__title">Search results</h2>
-      <NewsCardsList />
+      <NewsCardsList
+        cardsData={cardsData}
+        visibleCards={visibleCards}
+        onLikeCard={onLikeCard}
+        loggedIn={loggedIn}
+      />
       <div className="results__button">
-        <button type="button" className="results__button_text">
+        <button
+          type="button"
+          className={
+            cardsData.length === visibleCards
+              ? "results__button-text_hidden"
+              : "results__button-text"
+          }
+          onClick={handleShowMore}
+        >
           Show more
         </button>
       </div>
