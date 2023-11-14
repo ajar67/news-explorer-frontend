@@ -51,16 +51,16 @@ const Header = ({
           <Link to="/saved-articles" className="header__links">
             <p className="header__articles">Saved articles</p>
           </Link>
-          <div className="header__profile">
+          <button type="button" className="header__profile-button">
             <p className="header__name">Name</p>
-            <button className="header__pic">
+            <div className="header__pic">
               <img
                 className="header__img"
                 src={logoutWhite}
                 alt="logout button"
               />
-            </button>
-          </div>
+            </div>
+          </button>
         </div>
       ) : (
         <div className="header__options">

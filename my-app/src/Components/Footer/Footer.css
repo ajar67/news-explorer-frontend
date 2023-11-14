@@ -24,7 +24,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -32,17 +32,17 @@
   color: black;
 }
 
-.footer__names{
+.footer__names {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 20px;
+  gap: 40px;
 }
 
 .footer__icons {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 25px;
 }
 
 .footer__icon {
@@ -67,8 +67,8 @@
   .footer__section {
     flex-direction: column-reverse;
     max-height: 176px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-top: 100px;
   }
   .footer__content {
@@ -87,6 +87,6 @@
     margin: 0;
   }
   .footer__copyright {
-    width: 288px;
+    max-width: 288px;
   }
 }

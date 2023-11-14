@@ -6,8 +6,7 @@
   color: white;
   justify-content: center;
   align-items: center;
-  margin: auto;
-  height: 496px;
+  padding: 85px;
 }
 
 .main__content {
@@ -38,7 +37,7 @@
 
 @media screen and (min-width: 400px) and (max-width: 800px) {
   .main__section {
-    height: 344px;
+    padding: 45px;
   }
   .main__title {
     font-size: 36px;

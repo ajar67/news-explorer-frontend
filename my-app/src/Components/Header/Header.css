@@ -23,6 +23,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  cursor: pointer;
 }
 
 .header__options {
@@ -45,15 +46,17 @@
   justify-content: center;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .header__button_signin {
   width: 176px;
-  height: 48px;
+  height: 40px;
   border: 1px solid #fff;
   border-radius: 40px;
   background: none;
   color: white;
+  cursor: pointer;
 }
 
 .header__button_signin:hover {
@@ -64,7 +67,7 @@
   color: white; /*rgba(182, 188, 191, 1)*/
 }
 
-.header__profile {
+.header__profile-button {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -72,7 +75,8 @@
   border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 40px;
   width: 112px;
-  height: 48px;
+  height: 40px;
+  cursor: pointer;
 }
 
 .header__name {
@@ -93,8 +97,8 @@
 @media screen and (min-width: 400px) and (max-width: 800px) {
   .header__section {
     height: 66px;
-    padding-right: 25px;
-    padding-left: 25px;
+    padding-right: 35px;
+    padding-left: 35px;
   }
 
   .header__options {

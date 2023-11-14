@@ -41,7 +41,7 @@ const SearchForm = ({ windowWidth, onSearch }) => {
   };
 
   return windowWidth < 400 ? (
-    <div className="search__window">
+    <form className="search__window">
       <input
         value={searchValue}
         className="search__window_input"
@@ -59,9 +59,9 @@ const SearchForm = ({ windowWidth, onSearch }) => {
       <p className={errorMessage === "" ? "error__none" : "error"}>
         {errorMessage}
       </p>
-    </div>
+    </form>
   ) : (
-    <div className="search">
+    <form className="search">
       <input
         value={searchValue}
         className="search__input"
@@ -79,7 +79,7 @@ const SearchForm = ({ windowWidth, onSearch }) => {
       <p className={errorMessage === "" ? "error__none" : "error"}>
         {errorMessage}
       </p>
-    </div>
+    </form>
   );
 };
 

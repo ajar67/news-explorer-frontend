@@ -52,8 +52,7 @@
   background-color: white;
   border-radius: 8px;
   border: none;
-  height: 40px;
-  width: 40px;
+  cursor: pointer;
 }
 
 .card__button_text {
@@ -80,8 +79,8 @@
 }
 
 .card__button_image {
-  height: 24px;
-  width: 24px;
+  height: 40px;
+  width: 40px;
 }
 
 .card__info {

@@ -7,7 +7,8 @@
 
 @media screen and (min-width: 300px) and (max-width: 800px) {
   .card__list {
-    gap: 5px;
+    gap: 15px;
     justify-content: center;
+    padding-left: 0;
   }
 }

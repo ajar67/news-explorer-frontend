@@ -9,7 +9,6 @@ const Signup = ({
   onCreateSuccess,
   setModals,
 }) => {
-  
   const [formErrors, setFormErrors] = useState({
     email: "Enter a valid email",
     password: "Enter a password",

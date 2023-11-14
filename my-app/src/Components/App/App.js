@@ -17,7 +17,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -127,9 +127,9 @@ function App() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    window.addEventListener("resize", handleResize());
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize());
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

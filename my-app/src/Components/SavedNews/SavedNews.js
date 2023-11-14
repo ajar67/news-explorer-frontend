@@ -23,7 +23,7 @@ const SavedNews = ({ windowWidth, onCreateMenu, savedCards }) => {
         </div>
       </div>
       <div className="saved__cards">
-        <NewsCardsList cardsData={savedCards}/>
+        <NewsCardsList cardsData={savedCards} />
       </div>
       <Footer />
     </>

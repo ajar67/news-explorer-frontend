@@ -9,7 +9,7 @@
   max-width: 1440px;
   padding-left: 100px;
   padding-right: 100px;
-  border-bottom: 0.05px solid gray;
+  border-bottom: 0.05px solid rgba(209, 210, 214, 1);
   text-decoration: none;
   box-sizing: border-box;
 }
@@ -24,6 +24,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  cursor: pointer;
 }
 
 .header__options_saved {
@@ -42,6 +43,7 @@
   height: 80px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .header__articles_saved {
@@ -61,6 +63,7 @@
   line-height: 24px;
   height: 100%;
   border-bottom: 2px solid rgba(26, 27, 34, 1);
+  cursor: pointer;
 }
 
 .header__profile_saved {
@@ -72,6 +75,7 @@
   border-radius: 40px;
   width: 112px;
   height: 48px;
+  cursor: pointer;
 }
 
 .header__name_saved {
