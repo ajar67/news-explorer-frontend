@@ -13,19 +13,19 @@ function getCards({ userInput, apiKey, fromDate, toDate, pageSize }) {
   ).then(processResponseServer);
 }
 
-function saveCard( cardData) {
+function saveCard(token, cardData) {
   return fetch(`${baseURL}/articles`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      //authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(cardData)
+    body: JSON.stringify(cardData),
   }).then(processResponseServer);
 }
 
-function deleteCard(token) {
-  return (`${baseURL}/articles`,
+function deleteCard(id, token) {
+  return (`${baseURL}/articles/:${id}`,
   {
     method: "DELETE",
     headers: {
