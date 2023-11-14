@@ -89,17 +89,18 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
-  const handleSavingToggle = (cardData ) => {
-    saveCard(cardData )
+  const handleSavingToggle = (cardData) => {
+    saveCard(cardData)
       .then((res) => {
         console.log({ res });
-       // setCardsData((card) => (card.url === url ? res : card));
+        // setCardsData((card) => (card.url === url ? res : card));
         const savedCard = { ...res };
         console.log({ savedCard });
         setSavedCards([savedCard, ...savedCards]);
       })
       .catch((err) => console.error(err, "didnt save card"));
   };
+  console.log(savedCards);
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
 
