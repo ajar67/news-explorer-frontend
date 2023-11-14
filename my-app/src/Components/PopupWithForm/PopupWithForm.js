@@ -38,7 +38,7 @@ const PopupWithForm = ({
           <button
             className={`modal__button-submit modal__button-submit_${name}`}
             type="submit"
-            disabled={isSubmitDisabled}
+            disabled={!isSubmitDisabled}
           >
             {buttonText}
           </button>

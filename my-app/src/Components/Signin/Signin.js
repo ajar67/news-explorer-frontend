@@ -10,26 +10,24 @@ const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
     setErrorMessage("");
   };
 
-  //const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
-
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
-  // const isSubmitDisabled = Object.values(formErrors).some(
-  //   (error) => error !== ""
-  // );
 
   useEffect(() => {
     setEmail("");
     setPassword("");
   }, [isOpen]);
 
+  const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+  const validEmail = emailRegex.test(email);
+  const validPassword = password.length > 0;
+  const isFormValid = validEmail && validPassword;
+
   function handleSubmit(evt) {
     evt.preventDefault();
-    const validEmail = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-    if (validEmail) {
+    if (isFormValid) {
       //onSubmit({email, password})
     } else {
       setErrorMessage("Innvalid email address");
@@ -40,7 +38,7 @@ const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
       title="Sign in"
       onClose={onClose}
       onSubmit={handleSubmit}
-      //isSubmitDisabled={isSubmitDisabled}
+      isSubmitDisabled={isFormValid}
       buttonText={buttonText}
       name="signin"
       setModals={setModals}
@@ -76,10 +74,10 @@ const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
           required
         />
       </label>
-      <div className="modal__bottom modal__bottom_signin">
+      <div className="modal__bottom modal__bottom-signin">
         <p className="modal__or">or</p>
         <button
-          className="modal__button_two"
+          className="modal__button-two"
           type="button"
           onClick={onCreateSignup}
         >

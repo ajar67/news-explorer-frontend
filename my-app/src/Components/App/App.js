@@ -11,10 +11,10 @@ import Signin from "../Signin/Signin";
 import Signup from "../Signup/Signup";
 import SavedNews from "../SavedNews/SavedNews";
 import Success from "../Success/Success";
-import MenuModal from "../Menumodal/MenuModal";
-import { getCards, saveCard, deleteCard } from "../../utils/NewsApi";
+import { getCards, saveCard } from "../../utils/NewsApi";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
+import MenuModal from "../Menumodal/MenuModal";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -128,10 +128,13 @@ function App() {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
+    console.log({ windowWidth });
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [windowWidth]);
+
+  setLoggedIn(loggedIn);
 
   return (
     <div className="app">
@@ -140,8 +143,8 @@ function App() {
           <div
             className={
               location.pathname === "/saved-articles"
-                ? "container__saved"
-                : "container__home"
+                ? "app__saved"
+                : "app__home"
             }
           >
             <Header

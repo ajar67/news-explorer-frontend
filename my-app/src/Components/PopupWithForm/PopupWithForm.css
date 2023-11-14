@@ -143,14 +143,14 @@
   bottom: 40px;
 }
 
-.modal__button_two {
+.modal__button-two {
   background-color: white;
   border: none;
   color: rgba(47, 113, 229, 1);
   cursor: pointer;
 }
 
-.modal__button_two:hover {
+.modal__button-two:hover {
   opacity: 0.5;
 }
 
@@ -158,13 +158,13 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.modal__bottom_signin {
+.modal__bottom-signin {
   position: absolute;
   left: 141px;
   bottom: 60px;
 }
 
-.modal__bottom_signup {
+.modal__bottom-signup {
   position: absolute;
   left: 141px;
   bottom: 55px;

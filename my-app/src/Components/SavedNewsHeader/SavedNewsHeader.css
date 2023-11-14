@@ -1,6 +1,6 @@
 @import url("../../vendor/fonts.css");
 
-.header__section_saved {
+.header__section-saved {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -14,11 +14,11 @@
   box-sizing: border-box;
 }
 
-.header__links_saved {
+.header__links-saved {
   text-decoration: none;
 }
 
-.header__title_saved {
+.header__title-saved {
   color: rgba(26, 27, 34, 1);
   font-family: "Roboto Slab", sans-serif;
   font-weight: 700;
@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-.header__options_saved {
+.header__options-saved {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@
   line-height: 24px;
 }
 
-.header__home_saved {
+.header__home-saved {
   color: rgba(26, 27, 34, 1);
   height: 80px;
   display: flex;
@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 
-.header__articles_saved {
+.header__articles-saved {
   color: rgba(26, 27, 34, 1);
   border-bottom: 3px solid rgba(26, 27, 34, 1);
   height: 80px;
@@ -56,7 +56,7 @@
   width: 178px;
 }
 
-.header__button_saved {
+.header__button-saved {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -66,7 +66,7 @@
   cursor: pointer;
 }
 
-.header__profile_saved {
+.header__profile-saved {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -78,11 +78,11 @@
   cursor: pointer;
 }
 
-.header__name_saved {
+.header__name-saved {
   color: rgba(26, 27, 34, 1);
 }
 
-.header__pic_saved {
+.header__pic-saved {
   background: none;
   border: none;
   display: flex;
@@ -94,29 +94,29 @@
 }
 
 @media screen and (min-width: 400px) and (max-width: 800px) {
-  .header__section_saved {
+  .header__section-saved {
     height: 66px;
     padding-right: 25px;
     padding-left: 25px;
   }
-  .header__articles_saved {
+  .header__articles-saved {
     width: 160px;
     height: 66px;
   }
-  .header__profile_saved {
+  .header__profile-saved {
     width: 100px;
     height: 40px;
     border: 2px solid rgba(209, 210, 214, 1);
   }
-  .header__name_saved {
+  .header__name-saved {
     padding-left: 5px;
   }
 
-  .header__options_saved {
+  .header__options-saved {
     gap: 20px;
   }
 
-  .header__home_saved {
+  .header__home-saved {
     width: 64px;
   }
 }

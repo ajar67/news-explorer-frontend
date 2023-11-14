@@ -65,7 +65,7 @@ const Header = ({
       ) : (
         <div className="header__options">
           <p className="header__home">Home</p>
-          <button className="header__button_signin" onClick={onCreateSignin}>
+          <button className="header__button-signin" onClick={onCreateSignin}>
             Sign in
           </button>
         </div>

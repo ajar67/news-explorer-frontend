@@ -16,18 +16,18 @@ const SavedNewsHeader = ({ windowWidth, onCreateMenu }) => {
       </button>
     </header>
   ) : (
-    <header className="header__section_saved">
-      <Link to="/" className="header__links_saved">
-        <p className="header__title_saved">NewsExplorer</p>
+    <header className="header__section-saved">
+      <Link to="/" className="header__links-saved">
+        <p className="header__title-saved">NewsExplorer</p>
       </Link>
-      <div className="header__options_saved">
-        <Link to="/" className="header__links_saved">
-          <p className="header__home_saved">Home</p>
+      <div className="header__options-saved">
+        <Link to="/" className="header__links-saved">
+          <p className="header__home-saved">Home</p>
         </Link>
-        <p className="header__articles_saved">Saved articles</p>
-        <div className="header__profile_saved">
-          <p className="header__name_saved">Name</p>
-          <button className="header__pic_saved">
+        <p className="header__articles-saved">Saved articles</p>
+        <div className="header__profile-saved">
+          <p className="header__name-saved">Name</p>
+          <button className="header__pic-saved">
             <img
               className="header__img"
               src={logoutBlack}

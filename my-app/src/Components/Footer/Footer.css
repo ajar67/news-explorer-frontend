@@ -49,6 +49,15 @@
   width: 24px;
 }
 
+.footer__link {
+  text-decoration: none;
+}
+.footer__name {
+  display: flex;
+  align-items: center;
+  color: rgba(26, 27, 34, 1);
+}
+
 @media screen and (min-width: 400px) and (max-width: 800px) {
   .footer__section {
     height: 64px;
