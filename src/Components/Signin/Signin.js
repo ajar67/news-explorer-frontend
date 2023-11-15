@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
-  // props for open opposite modal {onCreateSignupModal}, onSubmit for the form
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {

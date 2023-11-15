@@ -1,5 +1,3 @@
-// this si the section where the cards are created
-
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./NewsCard.css";
@@ -43,7 +41,7 @@ const NewsCard = ({
     }
   };
 
-  const formatDate = (date) => {
+  const formatDate = () => {
     const options = { year: "numeric", month: "long", day: "2-digit" };
     const formattedDate = new Date(date).toLocaleDateString("en-US", options);
     return formattedDate;
@@ -54,8 +52,6 @@ const NewsCard = ({
     if (loggedIn) {
       onLikeCard(this);
       setSaveToggle((prevSaveToggle) => !prevSaveToggle);
-    } else {
-      return;
     }
   };
 

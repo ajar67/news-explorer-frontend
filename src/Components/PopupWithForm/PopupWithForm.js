@@ -1,4 +1,3 @@
-// popup with form will use this in all forms
 import "./PopupWithForm.css";
 import React from "react";
 import closeImage from "../../Images/closeButton.svg";

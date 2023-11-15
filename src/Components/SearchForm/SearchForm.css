@@ -60,6 +60,10 @@
   opacity: 0.8;
 }
 
+.search__button:active {
+  opacity: 1.5;
+}
+
 @media screen and (min-width: 500px) and (max-width: 900px) {
   .search {
     max-width: 452px;

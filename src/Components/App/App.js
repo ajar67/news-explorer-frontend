@@ -1,4 +1,3 @@
-//import logo from '../../Images/logo.svg';
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
@@ -93,7 +92,7 @@ function App() {
     saveCard(cardData)
       .then((res) => {
         console.log({ res });
-        // setCardsData((card) => (card.url === url ? res : card));
+        //setCardsData((card) => (card.url === url ? res : card));
         const savedCard = { ...res };
         console.log({ savedCard });
         setSavedCards([savedCard, ...savedCards]);

@@ -1,5 +1,3 @@
-// the saved news component
-// add card component to line #25 for the card section
 import React from "react";
 import "./SavedNews.css";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";

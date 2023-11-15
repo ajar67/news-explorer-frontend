@@ -171,13 +171,21 @@
   display: none;
 }
 
-@media screen and (min-width: 300px) and (max-width: 399px) {
+@media screen and (min-width: 500px) and (max-width: 600px) {
+  .modal__button-reset {
+    right: 0px;
+    top: -70px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 499px) {
   .modal__section {
     align-items: flex-start;
   }
   .modal__content_signin {
     top: 75px;
     height: 100%;
+    width: 100%;
     padding: 20px 15px;
   }
   .modal__content_signup {

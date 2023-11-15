@@ -1,4 +1,3 @@
-//this is SearchForm where you searh for topics
 import "./SearchForm.css";
 import React, { useState, useEffect } from "react";
 import { apiKey } from "../../utils/constants";

@@ -1,4 +1,3 @@
-// circle picture of author, little paragraph about author
 import "./About.css";
 import React from "react";
 

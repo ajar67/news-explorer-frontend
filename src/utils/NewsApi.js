@@ -1,4 +1,4 @@
-import { baseURL, processResponseServer } from "./constants.js";
+import { baseURL, processResponseServer } from "./constants";
 
 function getCards({ userInput, apiKey, fromDate, toDate, pageSize }) {
   return fetch(
