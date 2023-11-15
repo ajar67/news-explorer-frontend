@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 
 const SavedNews = ({ windowWidth, onCreateMenu, savedCards }) => {
   return (
-    <>
+    <div className="saved">
       <SavedNewsHeader windowWidth={windowWidth} onCreateMenu={onCreateMenu} />
       <div className="saved__section">
         <div className="saved__header">
@@ -26,7 +26,7 @@ const SavedNews = ({ windowWidth, onCreateMenu, savedCards }) => {
         <NewsCardsList cardsData={savedCards} />
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

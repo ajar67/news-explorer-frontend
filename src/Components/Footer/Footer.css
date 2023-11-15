@@ -58,7 +58,7 @@
   color: rgba(26, 27, 34, 1);
 }
 
-@media screen and (min-width: 400px) and (max-width: 800px) {
+@media screen and (min-width: 640px) and (max-width: 900px) {
   .footer__section {
     height: 64px;
     padding-left: 25px;
@@ -72,7 +72,7 @@
   }
 }
 
-@media screen and (min-width: 300px) and (max-width: 399px) {
+@media screen and (min-width: 300px) and (max-width: 639px) {
   .footer__section {
     flex-direction: column-reverse;
     max-height: 176px;

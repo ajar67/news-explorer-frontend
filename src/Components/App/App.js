@@ -150,6 +150,7 @@ function App() {
               onCreateMenu={openMenuModal}
               loggedIn={loggedIn}
               windowWidth={windowWidth}
+              setLoggedIn={setLoggedIn}
             />
             <Main windowWidth={windowWidth} onSearch={handleSearchResults} />
           </div>
@@ -222,6 +223,7 @@ function App() {
           onClose={() => closeModal("menu")}
           isOpen={modals.menu === true}
           setModals={setModals}
+          loggedIn={loggedIn}
         />
       )}
     </div>

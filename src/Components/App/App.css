@@ -70,17 +70,20 @@
   color: rgba(230, 232, 235, 1);
 }
 
-@media screen and (min-width: 400px) and (max-width: 800px) {
-  .container__home {
+@media screen and (min-width: 500px) and (max-width: 900px) {
+  .app__home {
     height: 400px;
+    width: auto;
   }
-  .container__saved {
+  .app__saved {
     height: 400px;
+    width: auto;
   }
 }
 
-@media screen and (min-width: 300px) and (max-width: 399px) {
-  .container__home {
+@media screen and (min-width: 320px) and (max-width: 499px) {
+  .app__home {
     height: 536px;
+    width: auto;
   }
 }

@@ -64,7 +64,7 @@
 }
 
 .header__articles {
-  color: white; /*rgba(182, 188, 191, 1)*/
+  color: white;
 }
 
 .header__profile-button {
@@ -73,6 +73,7 @@
   justify-content: space-around;
   align-items: center;
   border: 2px solid rgba(255, 255, 255, 1);
+  background-color: transparent;
   border-radius: 40px;
   width: 112px;
   height: 40px;
@@ -94,7 +95,7 @@
   height: 24px;
 }
 
-@media screen and (min-width: 400px) and (max-width: 800px) {
+@media screen and (min-width: 451px) and (max-width: 800px) {
   .header__section {
     height: 66px;
     padding-right: 35px;
@@ -116,12 +117,11 @@
   }
 }
 
-@media screen and (min-width: 300px) and (max-width: 399px) {
+@media screen and (min-width: 300px) and (max-width: 499px) {
   .header__section {
     height: 56px;
-    max-width: 399px;
-    padding-left: 10px;
-    padding-right: 10px;
+    max-width: 499px;
+    padding: 0 20px;
     border-bottom: 0.05px solid gray;
     box-sizing: border-box;
   }
@@ -137,9 +137,17 @@
   }
   .header__title-white {
     color: white;
+    font-family: "Roboto Slab", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
   }
   .header__menu {
     background: none;
     border: none;
+  }
+  .header__menu-pic {
+    height: 24px;
+    width: 24px;
   }
 }

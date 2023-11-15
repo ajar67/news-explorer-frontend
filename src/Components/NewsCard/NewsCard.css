@@ -114,8 +114,7 @@
 
 .card__title {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: -webkit-box;
   max-width: 352px;
   height: 60px;
   font-family: "Roboto Slab", sans-serif;
@@ -123,14 +122,16 @@
   font-size: 26px;
   line-height: 30px;
   color: rgba(26, 27, 34, 1);
-  overflow: hidden;
   text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card__description {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: -webkit-box;
   max-width: 352px;
   height: 110px;
   font-family: "Roboto", sans-serif;
@@ -138,8 +139,11 @@
   font-size: 16px;
   line-height: 22px;
   color: rgba(26, 27, 34, 1);
-  overflow: hidden;
   text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card__author {

@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: row;
   max-height: 624px;
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: auto;
   gap: 70px;
   padding: 100px;
 }
@@ -45,7 +46,7 @@
   margin: 0;
 }
 
-@media screen and (min-width: 400px) and (max-width: 800px) {
+@media screen and (min-width: 621px) and (max-width: 1250px) {
   .about__section {
     height: 354px;
     padding: 0 35px;
@@ -73,14 +74,14 @@
   }
 }
 
-@media screen and (min-width: 300px) and (max-width: 399px) {
+@media screen and (min-width: 320px) and (max-width: 620px) {
   .about__section {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: 25px 25px 0 25px;
     gap: 0;
-    height: 752px;
+    max-height: 752px;
   }
   .about__text {
     padding: 15px 10px 100px 10px;

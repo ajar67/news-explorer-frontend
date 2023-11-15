@@ -6,7 +6,7 @@ import NewsCard from "../NewsCard/NewsCard";
 
 const NewsCardsList = ({ cardsData, visibleCards, onLikeCard, loggedIn }) => {
   return (
-    <ul className="card__list">
+    <ul className="cards__list">
       {cardsData.slice(0, visibleCards).map((card) => (
         <NewsCard
           key={card.url}

@@ -12,15 +12,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal__section_menu {
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.modal__form_menu {
-  position: absolute;
-  width: 100%;
-}
-
 .modal__content {
   position: relative;
   background-color: white;
@@ -29,15 +20,6 @@
   padding: 34px 36px;
   display: flex;
   flex-direction: column;
-}
-
-.modal__content_menu {
-  background-color: rgba(26, 27, 34, 1);
-  width: 100%;
-  height: 230px;
-  padding: 15px;
-  border-radius: 0;
-  align-items: center;
 }
 
 .modal__content_signin {
@@ -59,10 +41,6 @@
   border: none;
   background: none;
   cursor: pointer;
-}
-
-.modal__button-reset_menu {
-  display: none;
 }
 
 .modal__close {
@@ -107,11 +85,9 @@
   cursor: pointer;
 }
 
-.modal__button-submit_menu {
-  position: absolute;
-  background-color: transparent;
-  border: 1px solid #fff;
-  height: 56px;
+.modal__button-submit:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
 }
 
 .modal__button-submit_success {
@@ -221,5 +197,27 @@
   .modal__button-reset {
     right: 20px;
     top: -60px;
+  }
+  .modal__button-submit_menu {
+    display: none;
+  }
+  .modal__section_menu {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .modal__form_menu {
+    position: absolute;
+    width: 100%;
+  }
+  .modal__button-reset_menu {
+    display: none;
+  }
+  .modal__content_menu {
+    background-color: rgba(26, 27, 34, 1);
+    width: 100%;
+    height: 230px;
+    padding: 0 15px;
+    border-radius: 0;
+    align-items: center;
   }
 }

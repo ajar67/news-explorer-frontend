@@ -5,20 +5,26 @@ import React from "react";
 import Header from "../Header/Header";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-const MenuModal = ({ onCreateSignin, isOpen, onClose, setModals }) => {
+const MenuModal = ({
+  onCreateSignin,
+  isOpen,
+  onClose,
+  setModals,
+  loggedIn,
+}) => {
   return (
-    <PopupWithForm
-      name="menu"
-      buttonText="Sign in"
-      onSubmit={onCreateSignin}
-      setModals={setModals}
-    >
+    <PopupWithForm name="menu" onSubmit={onCreateSignin} setModals={setModals}>
       <Header windowWidth={320} name="menu" isOpen={isOpen} onClose={onClose} />
-      <Link to="/" className="menu__links">
-        <p className="menu__home" onClick={onClose}>
-          Home
-        </p>
-      </Link>
+      <div className="menu">
+        <Link to="/" className="menu__links">
+          <p className="menu__home" onClick={onClose}>
+            Home
+          </p>
+        </Link>
+        <button type="button" className="menu__button" onClick={onCreateSignin}>
+          {loggedIn ? "Sign out" : "Sign in"}
+        </button>
+      </div>
     </PopupWithForm>
   );
 };
