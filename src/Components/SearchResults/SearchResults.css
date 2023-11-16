@@ -33,7 +33,7 @@
   align-items: center;
   border-radius: 50px;
   border: none;
-  background-color: rgba(232, 232, 232, 1);
+  background-color: white;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -46,12 +46,13 @@
 }
 
 .results__button-text:hover {
-  opacity: 0.5;
+  background-color: rgba(232, 232, 232, 1);
 }
 
 @media screen and (min-width: 400px) and (max-width: 800px) {
   .results {
-    padding: 30px 15px;
+    padding: 35px;
+    gap: 35px;
   }
   .results__title {
     font-size: 30px;
