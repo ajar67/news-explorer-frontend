@@ -56,7 +56,11 @@ const SearchForm = ({ windowWidth, onSearch }) => {
         >
           Search
         </button>
-        <p className={errorMessage === "" ? "error__none" : "error"}>
+        <p
+          className={
+            errorMessage === "" ? "search__error-none" : "search__error"
+          }
+        >
           {errorMessage}
         </p>
       </form>
@@ -71,13 +75,15 @@ const SearchForm = ({ windowWidth, onSearch }) => {
         onChange={handleSearchChange}
       />
       <button
-        type="button"
+        type="submit"
         className="search__button"
         onClick={handleSearchSubmit}
       >
         Search
       </button>
-      <p className={errorMessage === "" ? "error__none" : "error"}>
+      <p
+        className={errorMessage === "" ? "search__error-none" : "search__error"}
+      >
         {errorMessage}
       </p>
     </form>

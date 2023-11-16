@@ -19,10 +19,10 @@
   display: none;
 }
 
-.nothing__section {
+.app__nothing {
   visibility: visible;
 }
-.nothing__section_hidden {
+.app__nothing_hidden {
   display: none;
 }
 

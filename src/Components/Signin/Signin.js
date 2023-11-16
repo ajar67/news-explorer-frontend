@@ -55,7 +55,9 @@ const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
           onChange={handleEmailChange}
           required
         />
-        <p className={errorMessage === "" ? "error__none" : "error"}>
+        <p
+          className={errorMessage === "" ? "modal__error-none" : "modal__error"}
+        >
           {errorMessage}
         </p>
       </label>

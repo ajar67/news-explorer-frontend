@@ -159,8 +159,8 @@ function App() {
           <div
             className={
               cardsData.length === 0 && searchFocus === true
-                ? "nothing__section"
-                : "nothing__section_hidden"
+                ? "app__nothing"
+                : "app__nothing_hidden"
             }
           >
             <NothingFound />

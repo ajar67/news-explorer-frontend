@@ -1,4 +1,4 @@
-.cards__list {
+.cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (min-width: 451px) and (max-width: 900px) {
-  .cards__list {
+  .cards {
     gap: 5px;
     justify-content: center;
     padding-left: 0;
@@ -16,7 +16,7 @@
 }
 
 @media screen and (min-width: 300px) and (max-width: 450px) {
-  .cards__list {
+  .cards {
     gap: 15px;
     padding-left: 0px;
     justify-content: center;
