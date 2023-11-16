@@ -12,7 +12,6 @@ const PopupWithForm = ({
   buttonText,
   setModals,
 }) => {
-  //have to define all props
   const handleOuterClick = (evt) => {
     if (evt.target.classList.contains("modal__section")) {
       setModals({ signin: false, signup: false, success: false, menu: false });
@@ -29,9 +28,7 @@ const PopupWithForm = ({
             className={`modal__button-reset modal__button-reset_${name}`}
             type="button"
             onClick={onClose}
-          >
-            <img src={closeImage} alt="close button" className="modal__close" />
-          </button>
+          ></button>
           <h3 className={`modal__title modal__title_${name}`}>{title}</h3>
           <form
             onSubmit={onSubmit}
@@ -42,6 +39,7 @@ const PopupWithForm = ({
               className={`modal__button-submit modal__button-submit_${name}`}
               type="submit"
               disabled={!isSubmitDisabled}
+              tabIndex="0"
             >
               {buttonText}
             </button>
