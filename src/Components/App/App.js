@@ -1,4 +1,3 @@
-//import logo from '../../Images/logo.svg';
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
@@ -11,13 +10,13 @@ import Signin from "../Signin/Signin";
 import Signup from "../Signup/Signup";
 import SavedNews from "../SavedNews/SavedNews";
 import Success from "../Success/Success";
-import MenuModal from "../Menumodal/MenuModal";
-import { getCards, saveCard, deleteCard } from "../../utils/NewsApi";
+import { getCards, saveCard } from "../../utils/NewsApi";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
+import MenuModal from "../Menumodal/MenuModal";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -89,17 +88,18 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
-  const handleSavingToggle = (cardData ) => {
-    saveCard(cardData )
+  const handleSavingToggle = (cardData) => {
+    saveCard(cardData)
       .then((res) => {
         console.log({ res });
-       // setCardsData((card) => (card.url === url ? res : card));
+        //setCardsData((card) => (card.url === url ? res : card));
         const savedCard = { ...res };
         console.log({ savedCard });
         setSavedCards([savedCard, ...savedCards]);
       })
       .catch((err) => console.error(err, "didnt save card"));
   };
+  console.log(savedCards);
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
 
@@ -126,11 +126,12 @@ function App() {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    window.addEventListener("resize", handleResize());
+    window.addEventListener("resize", handleResize);
+    console.log({ windowWidth });
     return () => {
-      window.removeEventListener("resize", handleResize());
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [windowWidth]);
 
   return (
     <div className="app">
@@ -139,8 +140,8 @@ function App() {
           <div
             className={
               location.pathname === "/saved-articles"
-                ? "container__saved"
-                : "container__home"
+                ? "app__saved"
+                : "app__home"
             }
           >
             <Header
@@ -148,6 +149,7 @@ function App() {
               onCreateMenu={openMenuModal}
               loggedIn={loggedIn}
               windowWidth={windowWidth}
+              setLoggedIn={setLoggedIn}
             />
             <Main windowWidth={windowWidth} onSearch={handleSearchResults} />
           </div>
@@ -157,8 +159,8 @@ function App() {
           <div
             className={
               cardsData.length === 0 && searchFocus === true
-                ? "nothing__section"
-                : "nothing__section_hidden"
+                ? "app__nothing"
+                : "app__nothing_hidden"
             }
           >
             <NothingFound />
@@ -220,6 +222,7 @@ function App() {
           onClose={() => closeModal("menu")}
           isOpen={modals.menu === true}
           setModals={setModals}
+          loggedIn={loggedIn}
         />
       )}
     </div>

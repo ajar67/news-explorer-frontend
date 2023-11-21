@@ -1,4 +1,3 @@
-//this is SearchForm where you searh for topics
 import "./SearchForm.css";
 import React, { useState, useEffect } from "react";
 import { apiKey } from "../../utils/constants";
@@ -40,28 +39,34 @@ const SearchForm = ({ windowWidth, onSearch }) => {
     }
   };
 
-  return windowWidth < 400 ? (
-    <div className="search__window">
-      <input
-        value={searchValue}
-        className="search__window_input"
-        type="text"
-        placeholder="Enter topic"
-        onChange={handleSearchChange}
-      />
-      <button
-        type="button"
-        onClick={handleSearchSubmit}
-        className="search__window_button"
-      >
-        Search
-      </button>
-      <p className={errorMessage === "" ? "error__none" : "error"}>
-        {errorMessage}
-      </p>
+  return windowWidth < 500 ? (
+    <div className="search">
+      <form className="search__window">
+        <input
+          value={searchValue}
+          className="search__window-input"
+          type="text"
+          placeholder="Enter topic"
+          onChange={handleSearchChange}
+        />
+        <button
+          type="button"
+          onClick={handleSearchSubmit}
+          className="search__window-button"
+        >
+          Search
+        </button>
+        <p
+          className={
+            errorMessage === "" ? "search__error-none" : "search__error"
+          }
+        >
+          {errorMessage}
+        </p>
+      </form>
     </div>
   ) : (
-    <div className="search">
+    <form className="search">
       <input
         value={searchValue}
         className="search__input"
@@ -70,16 +75,18 @@ const SearchForm = ({ windowWidth, onSearch }) => {
         onChange={handleSearchChange}
       />
       <button
-        type="button"
+        type="submit"
         className="search__button"
         onClick={handleSearchSubmit}
       >
         Search
       </button>
-      <p className={errorMessage === "" ? "error__none" : "error"}>
+      <p
+        className={errorMessage === "" ? "search__error-none" : "search__error"}
+      >
         {errorMessage}
       </p>
-    </div>
+    </form>
   );
 };
 

@@ -10,7 +10,7 @@
   justify-content: center;
 }
 
-.circle-preloader {
+.preloader__circle {
   display: block;
   width: 50px;
   height: 50px;
@@ -18,13 +18,6 @@
   border-bottom-color: #888;
 
   border-radius: 50%;
-
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; 
-  margin: auto;*/
 
   animation: spin 0.75s infinite linear;
 }

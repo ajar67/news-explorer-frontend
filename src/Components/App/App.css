@@ -1,7 +1,6 @@
 @import "../../vendor/fonts.css";
 
 .app {
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
 }
@@ -20,14 +19,14 @@
   display: none;
 }
 
-.nothing__section {
+.app__nothing {
   visibility: visible;
 }
-.nothing__section_hidden {
+.app__nothing_hidden {
   display: none;
 }
 
-.container__home {
+.app__home {
   background-image: url("https://th.bing.com/th/id/R.3b23908f4530b7b9eec2a7a684bed00c?rik=zRNTi9fmIVW8OA&pid=ImgRaw&r=0");
   background-size: cover;
   background-repeat: no-repeat;
@@ -35,7 +34,7 @@
   width: 100%;
 }
 
-.container__saved {
+.app__saved {
   background-color: white;
   height: 576px;
   width: 100%;
@@ -71,17 +70,20 @@
   color: rgba(230, 232, 235, 1);
 }
 
-@media screen and (min-width: 400px) and (max-width: 800px) {
-  .container__home {
+@media screen and (min-width: 500px) and (max-width: 900px) {
+  .app__home {
     height: 400px;
+    width: auto;
   }
-  .container__saved {
+  .app__saved {
     height: 400px;
+    width: auto;
   }
 }
 
-@media screen and (min-width: 300px) and (max-width: 399px) {
-  .container__home {
+@media screen and (min-width: 320px) and (max-width: 499px) {
+  .app__home {
     height: 536px;
+    width: auto;
   }
 }

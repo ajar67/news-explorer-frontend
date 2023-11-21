@@ -22,7 +22,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 712px;
+  width: auto;
   height: 24px;
   color: rgba(26, 27, 34, 0.5);
   font-family: "Roboto", sans-serif;
@@ -38,7 +38,7 @@
   align-items: center;
   margin: 0;
   flex-wrap: wrap;
-  width: 530px;
+  width: auto;
   height: 92px;
   font-family: "Roboto slab", sans-serif;
   font-weight: 400;
@@ -47,7 +47,7 @@
 }
 
 .saved__keywords {
-  width: 712px;
+  width: auto;
   height: 24px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -64,7 +64,7 @@
 .saved__cards {
   background-color: rgba(245, 246, 247, 1);
   max-height: 2000px;
-  width: 100%;
+  width: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -73,9 +73,14 @@
 }
 
 @media screen and (min-width: 400px) and (max-width: 800px) {
+  .saved__articles {
+    font-size: 14px;
+  }
   .saved__section {
-    padding-right: 25px;
-    padding-left: 25px;
+    padding: 0 35px;
+  }
+  .saved__header {
+    gap: 20px;
   }
   .saved__note {
     width: 336px;
@@ -103,6 +108,7 @@
   .saved__articles {
     font-size: 12px;
     line-height: 24px;
+    width: auto;
   }
   .saved__note {
     font-size: 30px;
