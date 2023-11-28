@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import SearchResults from "../SearchResults/SearchResults";
@@ -14,13 +14,18 @@ import { getCards, saveCard } from "../../utils/NewsApi";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import MenuModal from "../Menumodal/MenuModal";
+import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
+import * as auth from "../../utils/auth";
+import ProtectedRoute from "../ProtectedRoute";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
+  const history = useHistory("");
   ////////////////////////////////////// handling all modals ////////////////////////////////////////
   const [modals, setModals] = useState({
     signin: false,
@@ -85,6 +90,50 @@ function App() {
       });
   };
 
+  //////////Signing up and Logging up//////////////
+
+  function handleLogin({ email, password }) {
+    handleLoading();
+    auth
+      .authorize(email, password)
+      .then((res) => {
+        if (res) {
+          console.log("handleLogin function:", res);
+          localStorage.setItem("jwt", res.token);
+          auth
+            .checkToken(res.token)
+            .then((data) => {
+              console.log("handleLogin function:", data);
+              setCurrentUser(data.data);
+              setLoggedIn(true);
+            })
+            .catch((err) => {
+              console.error(err);
+              console.log("Token failure: ", err);
+            });
+        }
+        closeModal("signin");
+      })
+      .catch((err) => {
+        console.log("Login failed: ", err);
+      })
+      .finally(handleLoading);
+  }
+
+  function handleRegistration({ email, password, name }) {
+    handleLoading();
+    auth
+      .register(email, password, name)
+      .then((res) => {
+        console.log("handleRegistration function: ", res);
+        closeModal("signup");
+      })
+      .catch((err) => {
+        console.log("Registration failed: ", err);
+      })
+      .finally(handleLoading);
+  }
+
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
@@ -100,6 +149,14 @@ function App() {
       .catch((err) => console.error(err, "didnt save card"));
   };
   console.log(savedCards);
+
+  //////////////////////////////////////////////////logout function //////////////////////////////
+
+  const logout = () => {
+    setLoggedIn(false);
+    localStorage.removeItem("jwt");
+    history.push("/");
+  };
 
   /////////////////////////////////////////////////// useEffets in APP /////////////////////////////////////
 
@@ -127,105 +184,130 @@ function App() {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
-    console.log({ windowWidth });
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [windowWidth]);
 
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    console.log("jwt in effect: ", jwt);
+    if (jwt) {
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          console.log("checktoken in effect: ", res);
+          setCurrentUser(res.data);
+          setLoggedIn(true);
+        })
+        .catch((err) => {
+          console.error("Token failed: ", err);
+        });
+    }
+  }, []);
+
   return (
-    <div className="app">
-      <Switch>
-        <Route exact path="/">
-          <div
-            className={
-              location.pathname === "/saved-articles"
-                ? "app__saved"
-                : "app__home"
-            }
-          >
-            <Header
-              onCreateSignin={openSigninModal}
-              onCreateMenu={openMenuModal}
-              loggedIn={loggedIn}
-              windowWidth={windowWidth}
-              setLoggedIn={setLoggedIn}
-            />
-            <Main windowWidth={windowWidth} onSearch={handleSearchResults} />
-          </div>
-          <div className={isLoading ? "preloader" : "preloader_hidden"}>
-            <Preloader />
-          </div>
-          <div
-            className={
-              cardsData.length === 0 && searchFocus === true
-                ? "app__nothing"
-                : "app__nothing_hidden"
-            }
-          >
-            <NothingFound />
-          </div>
-          <div
-            className={
-              cardsData.length > 0 ? "app__cards" : "app__cards_hidden"
-            }
-          >
-            <SearchResults
-              cardsData={cardsData}
-              onLikeCard={handleSavingToggle}
-              loggedIn={loggedIn}
-            />
-          </div>
-          <About />
-          <Footer />
-        </Route>
-        <Route path="/saved-articles">
-          <SavedNews
+    <CurrentUserContext.Provider value={{ currentUser }}>
+      <div className="app">
+        <Switch>
+          <Route exact path="/">
+            <div
+              className={
+                location.pathname === "/saved-articles"
+                  ? "app__saved"
+                  : "app__home"
+              }
+            >
+              <Header
+                onCreateSignin={openSigninModal}
+                onCreateMenu={openMenuModal}
+                loggedIn={loggedIn}
+                windowWidth={windowWidth}
+                setLoggedIn={setLoggedIn}
+                logout={logout}
+              />
+              <Main windowWidth={windowWidth} onSearch={handleSearchResults} />
+            </div>
+            <div className={isLoading ? "preloader" : "preloader_hidden"}>
+              <Preloader />
+            </div>
+            <div
+              className={
+                cardsData.length === 0 && searchFocus === true
+                  ? "app__nothing"
+                  : "app__nothing_hidden"
+              }
+            >
+              <NothingFound />
+            </div>
+            <div
+              className={
+                cardsData.length > 0 ? "app__cards" : "app__cards_hidden"
+              }
+            >
+              <SearchResults
+                cardsData={cardsData}
+                onLikeCard={handleSavingToggle}
+                loggedIn={loggedIn}
+              />
+            </div>
+            <About />
+            <Footer />
+          </Route>
+          <ProtectedRoute
+            path="/saved-articles"
             loggedIn={loggedIn}
-            windowWidth={windowWidth}
-            onCreateMenu={openMenuModal}
-            savedCards={savedCards}
+            component={(props) => (
+              <SavedNews
+                {...props}
+                loggedIn={loggedIn}
+                windowWidth={windowWidth}
+                onCreateMenu={openMenuModal}
+                savedCards={savedCards}
+                logout={logout}
+              />
+            )}
           />
-        </Route>
-      </Switch>
-      {modals.signin && (
-        <Signin
-          onCreateSignup={openSignupModal}
-          buttonText="Sign in"
-          onClose={() => closeModal("signin")}
-          isOpen={modals.signin === true}
-          setModals={setModals}
-        />
-      )}
-      {modals.signup && (
-        <Signup
-          onCreateSignin={openSigninModal}
-          onCreateSuccess={openSuccessModal}
-          buttonText="Sign up"
-          onClose={() => closeModal("signup")}
-          isOpen={modals.signup === true}
-          setModals={setModals}
-        />
-      )}
-      {modals.success && (
-        <Success
-          onCreateSuccess={openSuccessModal}
-          onClose={() => closeModal("success")}
-          isOpen={modals.success === true}
-          setModals={setModals}
-        />
-      )}
-      {modals.menu && (
-        <MenuModal
-          onCreateMenu={openMenuModal}
-          onCreateSignin={openSigninModal}
-          onClose={() => closeModal("menu")}
-          isOpen={modals.menu === true}
-          setModals={setModals}
-          loggedIn={loggedIn}
-        />
-      )}
-    </div>
+        </Switch>
+        {modals.signin && (
+          <Signin
+            onCreateSignup={openSignupModal}
+            buttonText="Sign in"
+            onClose={() => closeModal("signin")}
+            isOpen={modals.signin === true}
+            setModals={setModals}
+          />
+        )}
+        {modals.signup && (
+          <Signup
+            onCreateSignin={openSigninModal}
+            onCreateSuccess={openSuccessModal}
+            buttonText="Sign up"
+            onClose={() => closeModal("signup")}
+            isOpen={modals.signup === true}
+            setModals={setModals}
+          />
+        )}
+        {modals.success && (
+          <Success
+            onCreateSuccess={openSuccessModal}
+            onClose={() => closeModal("success")}
+            isOpen={modals.success === true}
+            setModals={setModals}
+          />
+        )}
+        {modals.menu && (
+          <MenuModal
+            onCreateMenu={openMenuModal}
+            onCreateSignin={openSigninModal}
+            onClose={() => closeModal("menu")}
+            isOpen={modals.menu === true}
+            setModals={setModals}
+            loggedIn={loggedIn}
+          />
+        )}
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
