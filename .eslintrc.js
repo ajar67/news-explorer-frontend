@@ -29,7 +29,7 @@ module.exports = {
     "no-underscore-dangle": ["error", { allow: ["_id"] }],
     "no-console": "off",
     "no-unused-vars": "off",
-    "spaced-comment": ["error", "never"],
+    "spaced-comment": "off",
     "arrow-body-style": "off",
   },
 };
