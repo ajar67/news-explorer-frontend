@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
-const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
+const Signin = ({
+  onClose,
+  buttonText,
+  isOpen,
+  onCreateSignup,
+  setModals,
+  onSubmit,
+}) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -27,7 +34,7 @@ const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
   function handleSubmit(evt) {
     evt.preventDefault();
     if (isFormValid) {
-      //onSubmit({email, password})
+      onSubmit({ email, password });
     } else {
       setErrorMessage("Innvalid email address");
     }
@@ -47,7 +54,7 @@ const Signin = ({ onClose, buttonText, isOpen, onCreateSignup, setModals }) => {
         <input
           value={email}
           className="modal__input"
-          type="text"
+          type="email"
           name="email"
           minLength="1"
           maxLength="30"

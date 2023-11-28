@@ -6,7 +6,6 @@ import saveHover from "../../Images/save-hover.svg";
 import saveMarked from "../../Images/save-marked.svg";
 import trashNormal from "../../Images/trash-normal.svg";
 import trashHover from "../../Images/trash-hover.svg";
-//import { apiKey } from "../../utils/constants";
 
 const NewsCard = ({
   date,

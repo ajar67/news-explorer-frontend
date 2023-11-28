@@ -276,6 +276,7 @@ function App() {
             onClose={() => closeModal("signin")}
             isOpen={modals.signin === true}
             setModals={setModals}
+            onSubit={handleLogin}
           />
         )}
         {modals.signup && (
@@ -286,6 +287,7 @@ function App() {
             onClose={() => closeModal("signup")}
             isOpen={modals.signup === true}
             setModals={setModals}
+            onSubmit={handleRegistration}
           />
         )}
         {modals.success && (

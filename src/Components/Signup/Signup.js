@@ -8,6 +8,7 @@ const Signup = ({
   onCreateSignin,
   onCreateSuccess,
   setModals,
+  onSubmit,
 }) => {
   const [errorMessage, setErrorMessage] = useState();
 
@@ -40,7 +41,7 @@ const Signup = ({
     evt.preventDefault();
     if (isFormValid) {
       onCreateSuccess();
-      //onSubmit({ email, password });
+      onSubmit({ email, password, username });
     } else {
       setErrorMessage("This email is not available");
     }
@@ -60,7 +61,7 @@ const Signup = ({
         <input
           value={email}
           className="modal__input"
-          type="text"
+          type="email"
           name="email"
           minLength="1"
           maxLength="30"
