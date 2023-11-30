@@ -30,8 +30,8 @@ const PopupWithForm = ({
           ></button>
           <h3 className={`modal__title modal__title_${name}`}>{title}</h3>
           <form
-            onSubmit={onSubmit}
             className={`modal__form modal__form_${name}`}
+            onSubmit={onSubmit}
           >
             {children}
             <button

@@ -1,4 +1,3 @@
-//this is header  for newsExplorer text, home button, sign in button
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";

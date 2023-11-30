@@ -34,6 +34,7 @@ const Signin = ({
   function handleSubmit(evt) {
     evt.preventDefault();
     if (isFormValid) {
+      console.log(email, password);
       onSubmit({ email, password });
     } else {
       setErrorMessage("Innvalid email address");

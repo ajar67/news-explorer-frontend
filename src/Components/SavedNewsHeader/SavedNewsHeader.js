@@ -6,7 +6,6 @@ import logoutBlack from "../../Images/logout-black.svg";
 import menuBlack from "../../Images/menu-black.svg";
 import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 
-
 const SavedNewsHeader = ({ windowWidth, onCreateMenu, logout }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   return windowWidth < 550 ? (

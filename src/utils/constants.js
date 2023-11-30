@@ -1,6 +1,11 @@
-export const baseURL = `https://nomoreparties.co/news/v2`;
+export const baseURL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.news-explorer.chickenkiller.com"
+    : "http://localhost:3002";
 
 ///before publication change baseURL to https://nomoreparties.co/news/v2  newsapi.org/v2
+
+export const apiURL = "https://nomoreparties.co/news/v2";
 
 export const processResponseServer = (res) => {
   if (res.ok) {

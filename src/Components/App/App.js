@@ -122,6 +122,7 @@ function App() {
 
   function handleRegistration({ email, password, name }) {
     handleLoading();
+    console.log(email, password, name);
     auth
       .register(email, password, name)
       .then((res) => {
@@ -276,7 +277,7 @@ function App() {
             onClose={() => closeModal("signin")}
             isOpen={modals.signin === true}
             setModals={setModals}
-            onSubit={handleLogin}
+            onSubmit={handleLogin}
           />
         )}
         {modals.signup && (

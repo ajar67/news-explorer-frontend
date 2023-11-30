@@ -1,8 +1,8 @@
-import { baseURL, processResponseServer } from "./constants";
+import { apiURL, baseURL, processResponseServer } from "./constants";
 
 function getCards({ userInput, apiKey, fromDate, toDate, pageSize }) {
   return fetch(
-    `${baseURL}/everything?q=${userInput}&apiKey=${apiKey}&from=${fromDate}&to=${toDate}&pageSize=${pageSize}`,
+    `${apiURL}/everything?q=${userInput}&apiKey=${apiKey}&from=${fromDate}&to=${toDate}&pageSize=${pageSize}`,
     {
       method: "GET",
       headers: {

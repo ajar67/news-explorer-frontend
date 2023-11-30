@@ -21,15 +21,15 @@ const Signup = ({
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setName(e.target.value);
   };
 
   const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
   const validEmail = emailRegex.test(email);
   const validPassword = password.length > 0;
-  const validUserName = username.length > 0;
+  const validUserName = name.length > 0;
   const isFormValid = validEmail && validPassword && validUserName;
 
   useEffect(() => {
@@ -39,9 +39,10 @@ const Signup = ({
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log("isFormValid: ", isFormValid);
     if (isFormValid) {
+      onSubmit({ email, password, name });
       onCreateSuccess();
-      onSubmit({ email, password, username });
     } else {
       setErrorMessage("This email is not available");
     }
@@ -87,7 +88,7 @@ const Signup = ({
       <label className="modal__info">
         Username
         <input
-          value={username}
+          value={name}
           className="modal__input"
           type="text"
           name="username"
