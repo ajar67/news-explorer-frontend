@@ -32,7 +32,7 @@ const NewsCard = ({
     title: title,
     text: text,
     date: date,
-    source: source,
+    source: source,//source.name or source.id or maybe both 
     author: author,
     link: link,
     image: image,

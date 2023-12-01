@@ -8,36 +8,53 @@ const Signin = ({
   onCreateSignup,
   setModals,
   onSubmit,
+  loginValidation,
+  setLoginValidation,
 }) => {
-  const [errorMessage, setErrorMessage] = useState("");
+  const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+
+  const [errorMessage, setErrorMessage] = useState({
+    email: "",
+    password: "",
+  });
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    setErrorMessage("");
+    const validInputEmail = emailRegex.test(e.target.value);
+    if (!validInputEmail) {
+      setErrorMessage((prevErrors) => ({
+        ...prevErrors,
+        email: "Invalid email address!",
+      }));
+    } else {
+      setErrorMessage((prevErrors) => ({
+        ...prevErrors,
+        email: "",
+      }));
+    }
   };
+
+  const validEmail = emailRegex.test(email);
 
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+  const validPassword = password.length > 0;
+  const isFormValid = validEmail && validPassword;
 
   useEffect(() => {
     setEmail("");
     setPassword("");
+    setLoginValidation("");
   }, [isOpen]);
-
-  const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-  const validEmail = emailRegex.test(email);
-  const validPassword = password.length > 0;
-  const isFormValid = validEmail && validPassword;
 
   function handleSubmit(evt) {
     evt.preventDefault();
     if (isFormValid) {
-      console.log(email, password);
+      console.log({ email, password });
       onSubmit({ email, password });
-    } else {
-      setErrorMessage("Innvalid email address");
+      console.log(loginValidation);
     }
   }
   return (
@@ -63,12 +80,10 @@ const Signin = ({
           onChange={handleEmailChange}
           required
         />
-        <p
-          className={errorMessage === "" ? "modal__error-none" : "modal__error"}
-        >
-          {errorMessage}
-        </p>
       </label>
+      <p className={errorMessage === "" ? "modal__error-none" : "modal__error"}>
+        {errorMessage.email}
+      </p>
       <label className="modal__info">
         Password
         <input
@@ -83,6 +98,15 @@ const Signin = ({
           required
         />
       </label>
+      <p
+        className={
+          loginValidation === ""
+            ? "modal__validation-none"
+            : "modal__validation"
+        }
+      >
+        {loginValidation}
+      </p>
       <div className="modal__bottom modal__bottom-signin">
         <p className="modal__or">or</p>
         <button

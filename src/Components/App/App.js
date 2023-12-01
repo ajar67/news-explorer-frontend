@@ -98,6 +98,8 @@ function App() {
 
   //////////Signing up and Logging up//////////////
 
+  const [loginValidation, setLoginValidation] = useState("");
+
   function handleLogin({ email, password }) {
     handleLoading();
     auth
@@ -106,6 +108,7 @@ function App() {
         if (res) {
           console.log("handleLogin function:", res);
           localStorage.setItem("jwt", res.token);
+          setLoginValidation("");
           auth
             .checkToken(res.token)
             .then((data) => {
@@ -122,6 +125,7 @@ function App() {
       })
       .catch((err) => {
         console.log("Login failed: ", err);
+        setLoginValidation("Login failed!");
       })
       .finally(handleLoading);
   }
@@ -299,6 +303,8 @@ function App() {
             isOpen={modals.signin === true}
             setModals={setModals}
             onSubmit={handleLogin}
+            loginValidation={loginValidation}
+            setLoginValidation={setLoginValidation}
           />
         )}
         {modals.signup && (
