@@ -15,7 +15,7 @@
 .preloader {
   visibility: visible;
 }
-.preloader_hidden {
+.preloader-hidden {
   display: none;
 }
 

@@ -2,7 +2,7 @@ import "./SearchForm.css";
 import React, { useState, useEffect } from "react";
 import { apiKey } from "../../utils/constants";
 
-const SearchForm = ({ windowWidth, onSearch }) => {
+const SearchForm = ({ windowWidth, onSearch, onSearchKeyword }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -17,23 +17,24 @@ const SearchForm = ({ windowWidth, onSearch }) => {
     setEndDate(currentDate.toISOString().split("T")[0]);
   }, []);
 
-  const [searchValue, setSearchValue] = useState("");
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
+  const [inputValue, setInputValue] = useState("");
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
     setErrorMessage("");
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const validSearch = /[a-zA-Z]/.test(searchValue);
+    const validSearch = /[a-zA-Z]/.test(inputValue);
     if (validSearch) {
       onSearch({
-        userInput: searchValue,
+        userInput: inputValue,
         apiKey: apiKey,
         fromDate: startDate,
         toDate: endDate,
         pageSize: 100,
       });
+      onSearchKeyword(inputValue);
     } else {
       setErrorMessage("Please enter a keyword");
     }
@@ -43,11 +44,11 @@ const SearchForm = ({ windowWidth, onSearch }) => {
     <div className="search">
       <form className="search__window">
         <input
-          value={searchValue}
+          value={inputValue}
           className="search__window-input"
           type="text"
           placeholder="Enter topic"
-          onChange={handleSearchChange}
+          onChange={handleInputChange}
         />
         <button
           type="button"
@@ -68,11 +69,11 @@ const SearchForm = ({ windowWidth, onSearch }) => {
   ) : (
     <form className="search">
       <input
-        value={searchValue}
+        value={inputValue}
         className="search__input"
         type="text"
         placeholder="Enter topic"
-        onChange={handleSearchChange}
+        onChange={handleInputChange}
       />
       <button
         type="submit"

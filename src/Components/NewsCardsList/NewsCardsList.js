@@ -4,7 +4,13 @@ import React from "react";
 import "./NewsCardsList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
-const NewsCardsList = ({ cardsData, visibleCards, onLikeCard, loggedIn }) => {
+const NewsCardsList = ({
+  cardsData,
+  visibleCards,
+  onLikeCard,
+  loggedIn,
+  searchKeyword,
+}) => {
   return (
     <ul className="cards">
       {cardsData.slice(0, visibleCards).map((card) => (
@@ -12,12 +18,14 @@ const NewsCardsList = ({ cardsData, visibleCards, onLikeCard, loggedIn }) => {
           key={card.url}
           date={card.publishedAt}
           title={card.title}
-          description={card.description}
+          source={card.source}
+          text={card.description}
           author={card.source.name}
           image={card.urlToImage}
           onLikeCard={onLikeCard}
-          cardUrl={card.url}
+          link={card.url}
           loggedIn={loggedIn}
+          searchKeyword={searchKeyword}
         />
       ))}
     </ul>

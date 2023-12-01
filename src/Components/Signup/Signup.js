@@ -39,7 +39,6 @@ const Signup = ({
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log("isFormValid: ", isFormValid);
     if (isFormValid) {
       onSubmit({ email, password, name });
       onCreateSuccess();

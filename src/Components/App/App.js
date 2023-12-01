@@ -46,6 +46,7 @@ function App() {
   };
 
   const openSigninModal = () => {
+    closeModal("success");
     closeModal("menu");
     closeModal("signup");
     openModal("signin");
@@ -88,6 +89,11 @@ function App() {
       .catch((err) => {
         console.error(err.message, "cant get cards!");
       });
+  };
+
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const handleSearchKeyword = (value) => {
+    setSearchKeyword(value);
   };
 
   //////////Signing up and Logging up//////////////
@@ -138,18 +144,27 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
-  const handleSavingToggle = (cardData) => {
-    saveCard(cardData)
+  const handleSavingToggle = (token, cardData) => {
+    console.log({ cardData });
+    saveCard(token, cardData)
       .then((res) => {
         console.log({ res });
-        //setCardsData((card) => (card.url === url ? res : card));
-        const savedCard = { ...res };
-        console.log({ savedCard });
-        setSavedCards([savedCard, ...savedCards]);
+        const savedCard = {
+          keyword: res.keyword,
+          title: res.title,
+          text: res.text,
+          date: res.date,
+          source: res.source,
+          author: res.author,
+          image: res.image,
+          link: res.link,
+          cardOwner: res.cardOwner,
+        };
+        setSavedCards((prevSavedCards) => [...prevSavedCards, savedCard]);
       })
       .catch((err) => console.error(err, "didnt save card"));
   };
-  console.log(savedCards);
+  console.log({ savedCards });
 
   //////////////////////////////////////////////////logout function //////////////////////////////
 
@@ -227,9 +242,13 @@ function App() {
                 setLoggedIn={setLoggedIn}
                 logout={logout}
               />
-              <Main windowWidth={windowWidth} onSearch={handleSearchResults} />
+              <Main
+                windowWidth={windowWidth}
+                onSearch={handleSearchResults}
+                onSearchKeyword={handleSearchKeyword}
+              />
             </div>
-            <div className={isLoading ? "preloader" : "preloader_hidden"}>
+            <div className={isLoading ? "preloader" : "preloader-hidden"}>
               <Preloader />
             </div>
             <div
@@ -250,6 +269,7 @@ function App() {
                 cardsData={cardsData}
                 onLikeCard={handleSavingToggle}
                 loggedIn={loggedIn}
+                searchKeyword={searchKeyword}
               />
             </div>
             <About />
@@ -266,6 +286,7 @@ function App() {
                 onCreateMenu={openMenuModal}
                 savedCards={savedCards}
                 logout={logout}
+                searchKeyword={searchKeyword}
               />
             )}
           />
@@ -297,6 +318,7 @@ function App() {
             onClose={() => closeModal("success")}
             isOpen={modals.success === true}
             setModals={setModals}
+            onCreateSignin={openSigninModal}
           />
         )}
         {modals.menu && (

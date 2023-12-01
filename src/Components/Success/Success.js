@@ -1,7 +1,14 @@
 import React from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import "./Success.css";
 
-const Success = ({ onCreateSuccess, buttonText, onClose, setModals }) => {
+const Success = ({
+  onCreateSuccess,
+  buttonText,
+  onClose,
+  setModals,
+  onCreateSignin,
+}) => {
   return (
     <PopupWithForm
       title="Registration successfully completed!"
@@ -11,7 +18,13 @@ const Success = ({ onCreateSuccess, buttonText, onClose, setModals }) => {
       name="success"
       setModals={setModals}
     >
-      <div className="success__button">Sign in</div>
+      <button
+        type="button"
+        onClick={onCreateSignin}
+        className="success__button"
+      >
+        Sign in
+      </button>
     </PopupWithForm>
   );
 };
