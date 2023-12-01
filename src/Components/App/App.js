@@ -130,17 +130,20 @@ function App() {
       .finally(handleLoading);
   }
 
+  const [signupValidation, setSignupValidation] = useState("");
+
   function handleRegistration({ email, password, name }) {
     handleLoading();
-    console.log(email, password, name);
     auth
       .register(email, password, name)
       .then((res) => {
         console.log("handleRegistration function: ", res);
+        setSignupValidation("");
         closeModal("signup");
       })
       .catch((err) => {
         console.log("Registration failed: ", err);
+        setSignupValidation("This email is not available");
       })
       .finally(handleLoading);
   }
@@ -316,6 +319,8 @@ function App() {
             isOpen={modals.signup === true}
             setModals={setModals}
             onSubmit={handleRegistration}
+            signupValidation={signupValidation}
+            setSignupValidation={setSignupValidation}
           />
         )}
         {modals.success && (

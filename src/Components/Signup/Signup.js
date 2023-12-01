@@ -9,12 +9,21 @@ const Signup = ({
   onCreateSuccess,
   setModals,
   onSubmit,
+  signupValidation,
+  setSignupValidation,
 }) => {
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+  const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    const validInputEmail = emailRegex.test(e.target.value);
+    if (!validInputEmail) {
+      setErrorMessage("Invalid email address!");
+    } else {
+      setErrorMessage("");
+    }
   };
 
   const [password, setPassword] = useState("");
@@ -26,7 +35,6 @@ const Signup = ({
     setName(e.target.value);
   };
 
-  const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
   const validEmail = emailRegex.test(email);
   const validPassword = password.length > 0;
   const validUserName = name.length > 0;
@@ -35,15 +43,16 @@ const Signup = ({
   useEffect(() => {
     setEmail("");
     setPassword("");
+    setSignupValidation("");
   }, [isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
     if (isFormValid) {
       onSubmit({ email, password, name });
-      onCreateSuccess();
-    } else {
-      setErrorMessage("This email is not available");
+      if (!signupValidation === "") {
+        onCreateSuccess();
+      }
     }
   }
   return (
@@ -70,6 +79,9 @@ const Signup = ({
           required
         />
       </label>
+      <p className={errorMessage === "" ? "modal__error-none" : "modal__error"}>
+        {errorMessage}
+      </p>
       <label className="modal__info">
         Password
         <input
@@ -98,6 +110,15 @@ const Signup = ({
           required
         />
       </label>
+      <p
+        className={
+          signupValidation === ""
+            ? "modal__validation-none"
+            : "modal__validation-signup"
+        }
+      >
+        {signupValidation}
+      </p>
       <div className="modal__bottom modal__bottom-signup">
         <p className="modal__or">or</p>
         <button

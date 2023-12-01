@@ -102,7 +102,7 @@ const Signin = ({
         className={
           loginValidation === ""
             ? "modal__validation-none"
-            : "modal__validation"
+            : "modal__validation-signin"
         }
       >
         {loginValidation}
