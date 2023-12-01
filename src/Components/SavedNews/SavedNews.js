@@ -11,7 +11,28 @@ const SavedNews = ({
   savedCards,
   logout,
   searchKeyword,
+  onDeleteCard
 }) => {
+  const keywords = savedCards.map((card) => card.keyword);
+  console.log({ keywords });
+
+  function countAndSort(words) {
+    const wordCounts = {};
+    words.forEach((word) => {
+      wordCounts[word] = (wordCounts[word] || 0) + 1;
+    });
+    const wordCountArray = Object.entries(wordCounts).map(([word, count]) => [
+      word,
+      count,
+    ]);
+    wordCountArray.sort((a, b) => b.count - a.count);
+    return wordCountArray;
+  }
+  const sortedKeywords = countAndSort(keywords);
+  const usableKeywords = sortedKeywords.map(([keyword]) => keyword);
+  const sliceSortedKeywords = `${usableKeywords.slice(0, 2)} and ${
+    usableKeywords.length - 2
+  } more`;
   const numberOfCards = savedCards.length;
   const { currentUser } = React.useContext(CurrentUserContext);
   return (
@@ -28,13 +49,13 @@ const SavedNews = ({
           <p className="saved__keywords">
             By keywords:
             <span className="saved__span">
-              Nature, Yellowstone, amd 2 other
+              {usableKeywords.length < 4 ? usableKeywords : sliceSortedKeywords}
             </span>
           </p>
         </div>
       </div>
       <div className="saved__cards">
-        <NewsCardsList cardsData={savedCards} searchKeyword={searchKeyword} />
+        <NewsCardsList cardsData={savedCards} searchKeyword={searchKeyword} onDeleteCard={onDeleteCard} />
       </div>
       <Footer />
     </div>

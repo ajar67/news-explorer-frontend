@@ -10,7 +10,12 @@ import Signin from "../Signin/Signin";
 import Signup from "../Signup/Signup";
 import SavedNews from "../SavedNews/SavedNews";
 import Success from "../Success/Success";
-import { getCards, saveCard } from "../../utils/NewsApi";
+import {
+  deleteCard,
+  getCards,
+  saveCard,
+  searchCards,
+} from "../../utils/NewsApi";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import MenuModal from "../Menumodal/MenuModal";
@@ -79,7 +84,7 @@ function App() {
     pageSize,
   }) => {
     handleLoading();
-    getCards({ userInput, apiKey, fromDate, toDate, pageSize })
+    searchCards({ userInput, apiKey, fromDate, toDate, pageSize })
       .then((res) => {
         console.log(res.articles);
         setIsLoading(false);
@@ -151,27 +156,34 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
-  const handleSavingToggle = (token, cardData) => {
-    console.log({ cardData });
+  const handleSavingCard = (token, cardData) => {
     saveCard(token, cardData)
       .then((res) => {
         console.log({ res });
         const savedCard = {
-          keyword: res.keyword,
-          title: res.title,
-          text: res.text,
-          date: res.date,
-          source: res.source,
-          author: res.author,
-          image: res.image,
-          link: res.link,
-          cardOwner: res.cardOwner,
+          keyword: res.date.keyword,
+          title: res.date.title,
+          text: res.date.text,
+          date: res.date.date,
+          source: res.date.source,
+          author: res.date.author,
+          image: res.date.image,
+          link: res.date.link,
+          cardOwner: res.date._id,
         };
+        console.log("saved card in app: ", savedCard);
         setSavedCards((prevSavedCards) => [...prevSavedCards, savedCard]);
       })
       .catch((err) => console.error(err, "didnt save card"));
   };
-  console.log({ savedCards });
+
+  const handleDeletingCard = (id, token) => {
+    deleteCard(id, token)
+      .then((res) => {
+        console.log("deletecard: ", res);
+      })
+      .catch((err) => console.error(err));
+  };
 
   //////////////////////////////////////////////////logout function //////////////////////////////
 
@@ -214,14 +226,15 @@ function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
-    console.log("jwt in effect: ", jwt);
     if (jwt) {
       auth
         .checkToken(jwt)
         .then((res) => {
-          console.log("checktoken in effect: ", res);
           setCurrentUser(res.data);
           setLoggedIn(true);
+          getCards(jwt).then((res) => {
+            setSavedCards(res.data);
+          });
         })
         .catch((err) => {
           console.error("Token failed: ", err);
@@ -274,7 +287,7 @@ function App() {
             >
               <SearchResults
                 cardsData={cardsData}
-                onLikeCard={handleSavingToggle}
+                onLikeCard={handleSavingCard}
                 loggedIn={loggedIn}
                 searchKeyword={searchKeyword}
               />
@@ -294,6 +307,7 @@ function App() {
                 savedCards={savedCards}
                 logout={logout}
                 searchKeyword={searchKeyword}
+                onDeleteCard={handleDeletingCard}
               />
             )}
           />
@@ -340,6 +354,7 @@ function App() {
             isOpen={modals.menu === true}
             setModals={setModals}
             loggedIn={loggedIn}
+            logout={logout}
           />
         )}
       </div>

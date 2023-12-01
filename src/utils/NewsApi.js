@@ -1,6 +1,6 @@
 import { apiURL, baseURL, processResponseServer } from "./constants";
 
-function getCards({ userInput, apiKey, fromDate, toDate, pageSize }) {
+function searchCards({ userInput, apiKey, fromDate, toDate, pageSize }) {
   return fetch(
     `${apiURL}/everything?q=${userInput}&apiKey=${apiKey}&from=${fromDate}&to=${toDate}&pageSize=${pageSize}`,
     {
@@ -11,6 +11,16 @@ function getCards({ userInput, apiKey, fromDate, toDate, pageSize }) {
       },
     }
   ).then(processResponseServer);
+}
+
+function getCards(token) {
+  return fetch(`${baseURL}/articles`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(processResponseServer);
 }
 
 function saveCard(token, cardData) {
@@ -25,7 +35,7 @@ function saveCard(token, cardData) {
 }
 
 function deleteCard(id, token) {
-  return (`${baseURL}/articles/:${id}`,
+  return (`${baseURL}/articles/${id}`,
   {
     method: "DELETE",
     headers: {
@@ -34,4 +44,4 @@ function deleteCard(id, token) {
   }).then(processResponseServer);
 }
 
-export { getCards, saveCard, deleteCard };
+export { searchCards, getCards, saveCard, deleteCard };

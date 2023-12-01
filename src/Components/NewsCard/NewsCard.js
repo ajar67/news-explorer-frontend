@@ -6,7 +6,6 @@ import saveHover from "../../Images/save-hover.svg";
 import saveMarked from "../../Images/save-marked.svg";
 import trashNormal from "../../Images/trash-normal.svg";
 import trashHover from "../../Images/trash-hover.svg";
-import { CurrentUserContext } from "../../Contexts/CurrentUserContext";
 
 const NewsCard = ({
   date,
@@ -19,33 +18,33 @@ const NewsCard = ({
   link,
   loggedIn,
   searchKeyword,
+  id,
+  onDeleteCard,
 }) => {
-  const { currentUser } = React.useContext(CurrentUserContext);
-  console.log(currentUser);
   const location = useLocation();
   const [saveSrc, setSaveSrc] = useState(saveNormal);
   const [trashSrc, setTrashSrc] = useState(trashNormal);
   const [buttonText, setButtonText] = useState("card__button-text_hidden");
-  const token = localStorage.getItem('jwt');
+  const token = localStorage.getItem("jwt");
   const cardInfo = {
     keyword: searchKeyword,
     title: title,
     text: text,
     date: date,
-    source: source,//source.name or source.id or maybe both 
+    source: source?.name,
     author: author,
     link: link,
     image: image,
-    cardOwner: currentUser._id,
   };
-  console.log(cardInfo.keyword);
   const handleMouseOver = () => {
     if (location.pathname === "/saved-articles") {
       setTrashSrc(trashHover);
       setButtonText("card__button-text");
     } else {
       setSaveSrc(saveHover);
-      setButtonText("card__button-text");
+      if (!loggedIn) {
+        setButtonText("card__button-text");
+      }
     }
   };
   const handleMouseOut = () => {
@@ -65,12 +64,18 @@ const NewsCard = ({
   };
 
   const [saveToggle, setSaveToggle] = useState(false);
-  const handleSaveToggle = () => {
+  const handleSaveCard = () => {
     if (loggedIn) {
       onLikeCard(token, cardInfo);
       setSaveToggle((prevSaveToggle) => !prevSaveToggle);
     }
   };
+
+  const handleDeleteCard = () => {
+    onDeleteCard(id, token);
+  };
+
+  console.log({ id });
 
   return (
     <li className="card">
@@ -95,7 +100,9 @@ const NewsCard = ({
           onMouseOut={handleMouseOut}
           className="card__button"
           type="button"
-          onClick={handleSaveToggle}
+          onClick={
+            location.pathname === "/" ? handleSaveCard : handleDeleteCard
+          }
         >
           <img
             src={
