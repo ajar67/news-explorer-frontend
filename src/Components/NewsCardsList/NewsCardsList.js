@@ -27,7 +27,7 @@ const NewsCardsList = ({
           link={card.url}
           loggedIn={loggedIn}
           searchKeyword={searchKeyword || card.keyword}
-          id={card._id || ""}
+          id={card._id || null}
           onDeleteCard={onDeleteCard}
         />
       ))}

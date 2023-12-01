@@ -63,19 +63,21 @@ const NewsCard = ({
     return formattedDate;
   };
 
-  const [saveToggle, setSaveToggle] = useState(false);
+  const [saved, setIsSaved] = useState(false);
+
   const handleSaveCard = () => {
-    if (loggedIn) {
+    if (loggedIn && !saved) {
       onLikeCard(token, cardInfo);
-      setSaveToggle((prevSaveToggle) => !prevSaveToggle);
+      if (!saved) {
+        setIsSaved((prevSaved) => !prevSaved);
+      }
     }
   };
 
   const handleDeleteCard = () => {
     onDeleteCard(id, token);
+    setIsSaved((prevSaved) => !prevSaved);
   };
-
-  console.log({ id });
 
   return (
     <li className="card">
@@ -108,7 +110,7 @@ const NewsCard = ({
             src={
               location.pathname === "/saved-articles"
                 ? trashSrc
-                : saveToggle
+                : saved
                 ? saveMarked
                 : saveSrc
             }

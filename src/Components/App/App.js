@@ -169,9 +169,8 @@ function App() {
           author: res.date.author,
           image: res.date.image,
           link: res.date.link,
-          cardOwner: res.date._id,
+          owner: res.date._id,
         };
-        console.log("saved card in app: ", savedCard);
         setSavedCards((prevSavedCards) => [...prevSavedCards, savedCard]);
       })
       .catch((err) => console.error(err, "didnt save card"));
