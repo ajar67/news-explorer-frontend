@@ -35,8 +35,7 @@ function saveCard(token, cardData) {
 }
 
 function deleteCard(id, token) {
-  return (`${baseURL}/articles/${id}`,
-  {
+  return fetch(`${baseURL}/articles/${id}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,

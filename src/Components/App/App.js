@@ -177,11 +177,15 @@ function App() {
   };
 
   const handleDeletingCard = (id, token) => {
+    handleLoading();
     deleteCard(id, token)
       .then((res) => {
         console.log("deletecard: ", res);
+        const filterCards = savedCards.filter((x) => id !== x._id);
+        setSavedCards(filterCards);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(handleLoading);
   };
 
   //////////////////////////////////////////////////logout function //////////////////////////////
