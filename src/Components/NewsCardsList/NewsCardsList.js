@@ -10,7 +10,7 @@ const NewsCardsList = ({
   onLikeCard,
   loggedIn,
   searchKeyword,
-  onDeleteCard
+  onDeleteCard,
 }) => {
   return (
     <ul className="cards">
