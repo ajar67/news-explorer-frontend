@@ -20,6 +20,7 @@ const NewsCard = ({
   searchKeyword,
   id,
   onDeleteCard,
+  onCreateSignup,
 }) => {
   const location = useLocation();
   const [saveSrc, setSaveSrc] = useState(saveNormal);
@@ -103,7 +104,11 @@ const NewsCard = ({
           className="card__button"
           type="button"
           onClick={
-            location.pathname === "/" ? handleSaveCard : handleDeleteCard
+            location.pathname === "/"
+              ? loggedIn
+                ? handleSaveCard
+                : onCreateSignup
+              : handleDeleteCard
           }
         >
           <img

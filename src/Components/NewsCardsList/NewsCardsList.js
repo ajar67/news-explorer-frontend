@@ -11,6 +11,7 @@ const NewsCardsList = ({
   loggedIn,
   searchKeyword,
   onDeleteCard,
+  onCreateSignup,
 }) => {
   return (
     <ul className="cards">
@@ -27,8 +28,9 @@ const NewsCardsList = ({
           link={card.url}
           loggedIn={loggedIn}
           searchKeyword={searchKeyword || card.keyword}
-          id={card._id || null}
+          id={card._id || card.owner}
           onDeleteCard={onDeleteCard}
+          onCreateSignup={onCreateSignup}
         />
       ))}
     </ul>

@@ -293,6 +293,7 @@ function App() {
                 onLikeCard={handleSavingCard}
                 loggedIn={loggedIn}
                 searchKeyword={searchKeyword}
+                onCreateSignup={openSignupModal}
               />
             </div>
             <About />

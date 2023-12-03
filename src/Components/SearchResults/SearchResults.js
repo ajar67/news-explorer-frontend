@@ -4,7 +4,13 @@ import React, { useState } from "react";
 import "./SearchResults.css";
 import NewsCardsList from "../NewsCardsList/NewsCardsList";
 
-const SearchResults = ({ cardsData, onLikeCard, loggedIn, searchKeyword }) => {
+const SearchResults = ({
+  cardsData,
+  onLikeCard,
+  loggedIn,
+  searchKeyword,
+  onCreateSignup,
+}) => {
   const [visibleCards, setVisibleCards] = useState(3);
   const handleShowMore = () => {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 3);
@@ -19,6 +25,7 @@ const SearchResults = ({ cardsData, onLikeCard, loggedIn, searchKeyword }) => {
         onLikeCard={onLikeCard}
         loggedIn={loggedIn}
         searchKeyword={searchKeyword}
+        onCreateSignup={onCreateSignup}
       />
       <div className="results__button">
         <button
