@@ -46,7 +46,6 @@ const Signup = ({
     setSignupValidation("");
   }, [isOpen]);
 
-  console.log(signupValidation);
 
   function handleSubmit(evt) {
     evt.preventDefault();

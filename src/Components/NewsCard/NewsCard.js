@@ -66,10 +66,9 @@ const NewsCard = ({
   const [saved, setIsSaved] = useState(false);
   const token = localStorage.getItem("jwt");
 
-  
   const handleSaveCard = () => {
     if (loggedIn && !saved) {
-      onLikeCard(token, cardInfo, image);
+      onLikeCard(token, cardInfo);
       if (!saved) {
         setIsSaved((prevSaved) => !prevSaved);
       }
@@ -81,6 +80,7 @@ const NewsCard = ({
     setIsSaved((prevSaved) => !prevSaved);
   };
 
+  //const cardShouldBeSaved = id ? true : false;
 
   return (
     <li className="card">

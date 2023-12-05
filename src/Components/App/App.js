@@ -41,8 +41,8 @@ function App() {
   const openModal = (modal) => {
     setModals((prevModals) => ({ ...prevModals, [modal]: true }));
   };
-  const closeModal = (modal) => {
-    setModals((prevModals) => ({ ...prevModals, [modal]: false }));
+  const closeAllModals = () => {
+    setModals({ signin: false, signup: false, success: false, menu: false });
   };
 
   ////////////////////////////////////// function for when pressing on signin or signup buttons ////////////////////////////////////////
@@ -51,19 +51,17 @@ function App() {
   };
 
   const openSigninModal = () => {
-    closeModal("success");
-    closeModal("menu");
-    closeModal("signup");
+    closeAllModals();
     openModal("signin");
   };
 
   const openSignupModal = () => {
-    closeModal("signin");
+    closeAllModals();
     openModal("signup");
   };
 
   const openSuccessModal = () => {
-    closeModal("signup");
+    closeAllModals();
     openModal("success");
   };
 
@@ -126,7 +124,7 @@ function App() {
               console.log("Token failure: ", err);
             });
         }
-        closeModal("signin");
+        closeAllModals();
       })
       .catch((err) => {
         console.log("Login failed: ", err);
@@ -144,7 +142,7 @@ function App() {
       .then((res) => {
         console.log("handleRegistration function: ", res);
         setSignupValidation("");
-        closeModal("signup");
+        closeAllModals();
       })
       .catch((err) => {
         console.log("Registration failed: ", err);
@@ -156,10 +154,11 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
-  const handleSavingCard = (token, cardData, image) => {
+  const handleSavingCard = (token, cardData) => {
     console.log(token);
     saveCard(token, cardData)
       .then((res) => {
+        console.log({ currentUser });
         const savedCard = {
           keyword: res.date.keyword,
           title: res.date.title,
@@ -169,10 +168,13 @@ function App() {
           author: res.date.author,
           image: res.date.image,
           link: res.date.link,
-          owner: res.date._id,
+          artileId: res.date._id,
+          owner: currentUser._id,
         };
         setSavedCards((prevSavedCards) => [...prevSavedCards, savedCard]);
-        return res;
+        getCards(token).then((res) => {
+          setSavedCards(res.data);
+        });
       })
       .catch((err) => console.error(err, "didnt save card"));
   };
@@ -180,10 +182,8 @@ function App() {
   const handleDeletingCard = (id, token) => {
     handleLoading();
     deleteCard(id, token)
-      .then((res) => {
-        console.log("deletecard: ", res);
+      .then(() => {
         setSavedCards((prevCards) => prevCards.filter((x) => id !== x._id));
-        return res;
       })
       .catch((err) => console.error(err))
       .finally(handleLoading);
@@ -202,12 +202,7 @@ function App() {
   useEffect(() => {
     const closeByEscape = (e) => {
       if (e.key === "Escape") {
-        setModals({
-          signin: false,
-          signup: false,
-          success: false,
-          menu: false,
-        });
+        closeAllModals();
       }
     };
 
@@ -303,6 +298,14 @@ function App() {
           <ProtectedRoute
             path="/saved-articles"
             loggedIn={loggedIn}
+            onCreateSignup={openSignupModal}
+            buttonText="Sign in"
+            onClose={() => closeAllModals()}
+            isOpen={modals.signin === true}
+            setModals={setModals}
+            onSubmit={handleLogin}
+            loginValidation={loginValidation}
+            setLoginValidation={setLoginValidation}
             component={(props) => (
               <SavedNews
                 {...props}
@@ -321,7 +324,7 @@ function App() {
           <Signin
             onCreateSignup={openSignupModal}
             buttonText="Sign in"
-            onClose={() => closeModal("signin")}
+            onClose={() => closeAllModals()}
             isOpen={modals.signin === true}
             setModals={setModals}
             onSubmit={handleLogin}
@@ -334,7 +337,7 @@ function App() {
             onCreateSignin={openSigninModal}
             onCreateSuccess={openSuccessModal}
             buttonText="Sign up"
-            onClose={() => closeModal("signup")}
+            onClose={() => closeAllModals()}
             isOpen={modals.signup === true}
             setModals={setModals}
             onSubmit={handleRegistration}
@@ -345,7 +348,7 @@ function App() {
         {modals.success && (
           <Success
             onCreateSuccess={openSuccessModal}
-            onClose={() => closeModal("success")}
+            onClose={() => closeAllModals()}
             isOpen={modals.success === true}
             setModals={setModals}
             onCreateSignin={openSigninModal}
@@ -355,7 +358,7 @@ function App() {
           <MenuModal
             onCreateMenu={openMenuModal}
             onCreateSignin={openSigninModal}
-            onClose={() => closeModal("menu")}
+            onClose={() => closeAllModals()}
             isOpen={modals.menu === true}
             setModals={setModals}
             loggedIn={loggedIn}

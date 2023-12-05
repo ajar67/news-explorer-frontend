@@ -12,13 +12,12 @@ const NewsCardsList = ({
   searchKeyword,
   onDeleteCard,
   onCreateSignup,
-  
 }) => {
   return (
     <ul className="cards">
       {cardsData.slice(0, visibleCards).map((card) => (
         <NewsCard
-          key={card.url || card.link}
+          key={card._id || card.link}
           date={card.publishedAt || card.date}
           title={card.title}
           source={card.source}
@@ -29,7 +28,7 @@ const NewsCardsList = ({
           link={card.url}
           loggedIn={loggedIn}
           searchKeyword={searchKeyword || card.keyword}
-          id={card._id || card.owner}
+          id={card._id}
           onDeleteCard={onDeleteCard}
           onCreateSignup={onCreateSignup}
         />

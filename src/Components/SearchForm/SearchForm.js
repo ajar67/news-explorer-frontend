@@ -67,7 +67,7 @@ const SearchForm = ({ windowWidth, onSearch, onSearchKeyword }) => {
       </form>
     </div>
   ) : (
-    <form className="search">
+    <form className="search" onSubmit={handleSearchSubmit}>
       <input
         value={inputValue}
         className="search__input"
@@ -75,11 +75,7 @@ const SearchForm = ({ windowWidth, onSearch, onSearchKeyword }) => {
         placeholder="Enter topic"
         onChange={handleInputChange}
       />
-      <button
-        type="submit"
-        className="search__button"
-        onClick={handleSearchSubmit}
-      >
+      <button type="submit" className="search__button">
         Search
       </button>
       <p
