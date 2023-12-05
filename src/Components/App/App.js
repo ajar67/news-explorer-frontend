@@ -47,6 +47,7 @@ function App() {
 
   ////////////////////////////////////// function for when pressing on signin or signup buttons ////////////////////////////////////////
   const openMenuModal = () => {
+    closeAllModals();
     openModal("menu");
   };
 
@@ -142,7 +143,6 @@ function App() {
       .then((res) => {
         console.log("handleRegistration function: ", res);
         setSignupValidation("");
-        closeAllModals();
       })
       .catch((err) => {
         console.log("Registration failed: ", err);
@@ -301,7 +301,7 @@ function App() {
             onCreateSignup={openSignupModal}
             buttonText="Sign in"
             onClose={() => closeAllModals()}
-            isOpen={modals.signin === true}
+            isOpen={true}
             setModals={setModals}
             onSubmit={handleLogin}
             loginValidation={loginValidation}

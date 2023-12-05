@@ -46,12 +46,12 @@ const Signup = ({
     setSignupValidation("");
   }, [isOpen]);
 
-
   function handleSubmit(evt) {
     evt.preventDefault();
     if (isFormValid) {
       onSubmit({ email, password, name });
       if (signupValidation === "") {
+        console.log("sign up successful");
         onCreateSuccess();
       }
     }

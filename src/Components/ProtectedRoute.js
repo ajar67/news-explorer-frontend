@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import Signin from "./Signin/Signin";
 
 const ProtectedRoute = ({ component: Component, ...props }) => {
-  console.log(props);
+  useEffect(() => {
+    if (!props.loggedIn) {
+      props.setModals((prevModals) => ({ ...prevModals, signin: true }));
+    }
+  }, [props.loggedIn]);
   return (
     <Route>
       {() =>

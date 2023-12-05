@@ -15,9 +15,9 @@ const NewsCardsList = ({
 }) => {
   return (
     <ul className="cards">
-      {cardsData.slice(0, visibleCards).map((card) => (
+      {cardsData.slice(0, visibleCards).map((card, index) => (
         <NewsCard
-          key={card._id || card.link}
+          key={index + 1}
           date={card.publishedAt || card.date}
           title={card.title}
           source={card.source}
