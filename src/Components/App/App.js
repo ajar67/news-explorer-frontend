@@ -156,10 +156,10 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
-  const handleSavingCard = (token, cardData) => {
+  const handleSavingCard = (token, cardData, image) => {
+    console.log(token);
     saveCard(token, cardData)
       .then((res) => {
-        console.log({ res });
         const savedCard = {
           keyword: res.date.keyword,
           title: res.date.title,
@@ -172,6 +172,7 @@ function App() {
           owner: res.date._id,
         };
         setSavedCards((prevSavedCards) => [...prevSavedCards, savedCard]);
+        return res;
       })
       .catch((err) => console.error(err, "didnt save card"));
   };
@@ -181,8 +182,8 @@ function App() {
     deleteCard(id, token)
       .then((res) => {
         console.log("deletecard: ", res);
-        const filterCards = savedCards.filter((x) => id !== x._id);
-        setSavedCards(filterCards);
+        setSavedCards((prevCards) => prevCards.filter((x) => id !== x._id));
+        return res;
       })
       .catch((err) => console.error(err))
       .finally(handleLoading);

@@ -26,7 +26,6 @@ const NewsCard = ({
   const [saveSrc, setSaveSrc] = useState(saveNormal);
   const [trashSrc, setTrashSrc] = useState(trashNormal);
   const [buttonText, setButtonText] = useState("card__button-text_hidden");
-  const token = localStorage.getItem("jwt");
   const cardInfo = {
     keyword: searchKeyword,
     title: title,
@@ -65,10 +64,12 @@ const NewsCard = ({
   };
 
   const [saved, setIsSaved] = useState(false);
+  const token = localStorage.getItem("jwt");
 
+  
   const handleSaveCard = () => {
     if (loggedIn && !saved) {
-      onLikeCard(token, cardInfo);
+      onLikeCard(token, cardInfo, image);
       if (!saved) {
         setIsSaved((prevSaved) => !prevSaved);
       }
@@ -79,6 +80,7 @@ const NewsCard = ({
     onDeleteCard(id, token);
     setIsSaved((prevSaved) => !prevSaved);
   };
+
 
   return (
     <li className="card">

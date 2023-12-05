@@ -63,7 +63,7 @@
 
 .saved__cards {
   background-color: rgba(245, 246, 247, 1);
-  max-height: 2000px;
+  max-height: 100%;
   width: auto;
   display: flex;
   flex-direction: row;

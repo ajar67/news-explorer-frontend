@@ -24,6 +24,7 @@ function getCards(token) {
 }
 
 function saveCard(token, cardData) {
+  console.log({ token });
   return fetch(`${baseURL}/articles`, {
     method: "POST",
     headers: {

@@ -12,6 +12,7 @@ const NewsCardsList = ({
   searchKeyword,
   onDeleteCard,
   onCreateSignup,
+  
 }) => {
   return (
     <ul className="cards">
