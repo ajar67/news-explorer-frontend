@@ -10,6 +10,8 @@ const SearchResults = ({
   loggedIn,
   searchKeyword,
   onCreateSignup,
+  linksArray,
+  onDeleteCard
 }) => {
   const [visibleCards, setVisibleCards] = useState(3);
   const handleShowMore = () => {
@@ -26,6 +28,8 @@ const SearchResults = ({
         loggedIn={loggedIn}
         searchKeyword={searchKeyword}
         onCreateSignup={onCreateSignup}
+        linksArray={linksArray}
+        onDeleteCard={onDeleteCard}
       />
       <div className="results__button">
         <button

@@ -12,6 +12,7 @@ const NewsCardsList = ({
   searchKeyword,
   onDeleteCard,
   onCreateSignup,
+  linksArray,
 }) => {
   return (
     <ul className="cards">
@@ -25,12 +26,13 @@ const NewsCardsList = ({
           author={card.author}
           image={card.urlToImage || card.image}
           onLikeCard={onLikeCard}
-          link={card.url}
+          link={card.url || card.link}
           loggedIn={loggedIn}
           searchKeyword={searchKeyword || card.keyword}
-          id={card._id}
+          id={card._id || card.url}
           onDeleteCard={onDeleteCard}
           onCreateSignup={onCreateSignup}
+          linksArray={linksArray}
         />
       ))}
     </ul>

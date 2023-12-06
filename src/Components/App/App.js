@@ -75,6 +75,7 @@ function App() {
   ////////////getting the cards////////////////////////
 
   const [cardsData, setCardsData] = useState([]);
+
   const handleSearchResults = ({
     userInput,
     apiKey,
@@ -85,7 +86,6 @@ function App() {
     handleLoading();
     searchCards({ userInput, apiKey, fromDate, toDate, pageSize })
       .then((res) => {
-        console.log(res.articles);
         setIsLoading(false);
         setSearchFocus(true);
         setCardsData(res.articles);
@@ -154,11 +154,11 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
+  const linksArray = savedCards.map((card) => card.link);
   const handleSavingCard = (token, cardData) => {
     console.log(token);
     saveCard(token, cardData)
       .then((res) => {
-        console.log({ currentUser });
         const savedCard = {
           keyword: res.date.keyword,
           title: res.date.title,
@@ -179,11 +179,17 @@ function App() {
       .catch((err) => console.error(err, "didnt save card"));
   };
 
-  const handleDeletingCard = (id, token) => {
+  const handleDeletingCard = (id, token, link) => {
     handleLoading();
     deleteCard(id, token)
       .then(() => {
-        setSavedCards((prevCards) => prevCards.filter((x) => id !== x._id));
+        setSavedCards((prevCards) =>
+          prevCards.filter((x) => {
+            console.log(link, x.link);
+            return link !== x.link;
+          })
+        );
+        console.log("deleteCard: ", linksArray);
       })
       .catch((err) => console.error(err))
       .finally(handleLoading);
@@ -290,6 +296,8 @@ function App() {
                 loggedIn={loggedIn}
                 searchKeyword={searchKeyword}
                 onCreateSignup={openSignupModal}
+                linksArray={linksArray}
+                onDeleteCard={handleDeletingCard}
               />
             </div>
             <About />
@@ -316,6 +324,7 @@ function App() {
                 logout={logout}
                 searchKeyword={searchKeyword}
                 onDeleteCard={handleDeletingCard}
+                linksArray={linksArray}
               />
             )}
           />

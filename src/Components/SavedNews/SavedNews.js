@@ -12,6 +12,7 @@ const SavedNews = ({
   logout,
   searchKeyword,
   onDeleteCard,
+  linksArray,
 }) => {
   const keywords = savedCards.map((card) => card.keyword);
   console.log({ keywords });
@@ -59,6 +60,7 @@ const SavedNews = ({
           cardsData={savedCards}
           searchKeyword={searchKeyword}
           onDeleteCard={onDeleteCard}
+          linksArray={linksArray}
         />
       </div>
       <Footer />

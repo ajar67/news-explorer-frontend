@@ -21,6 +21,7 @@ const NewsCard = ({
   id,
   onDeleteCard,
   onCreateSignup,
+  linksArray,
 }) => {
   const location = useLocation();
   const [saveSrc, setSaveSrc] = useState(saveNormal);
@@ -63,24 +64,32 @@ const NewsCard = ({
     return formattedDate;
   };
 
-  const [saved, setIsSaved] = useState(false);
+  const [savedCard, setSavedCard] = useState(false);
   const token = localStorage.getItem("jwt");
 
+  const handleDeleteCard = () => {
+    onDeleteCard(id, token, link);
+    setSavedCard((prevSaved) => !prevSaved);
+  };
+
+  console.log(id);
   const handleSaveCard = () => {
-    if (loggedIn && !saved) {
+    console.log({ linksArray });
+    if (loggedIn && !linksArray.includes(link)) {
       onLikeCard(token, cardInfo);
-      if (!saved) {
-        setIsSaved((prevSaved) => !prevSaved);
-      }
+      setSavedCard((prevSaved) => !prevSaved);
+    }
+    if (loggedIn && linksArray.includes(link)) {
+      return;
     }
   };
 
-  const handleDeleteCard = () => {
-    onDeleteCard(id, token);
-    setIsSaved((prevSaved) => !prevSaved);
+  const imageClass = () => {
+    if (linksArray.includes(link)) {
+      return saveMarked;
+    }
+    return saveNormal;
   };
-
-  //const cardShouldBeSaved = id ? true : false;
 
   return (
     <li className="card">
@@ -115,11 +124,7 @@ const NewsCard = ({
         >
           <img
             src={
-              location.pathname === "/saved-articles"
-                ? trashSrc
-                : saved
-                ? saveMarked
-                : saveSrc
+              location.pathname === "/saved-articles" ? trashSrc : imageClass()
             }
             className="card__button-image"
             alt="card button"
