@@ -68,24 +68,25 @@ const NewsCard = ({
   const token = localStorage.getItem("jwt");
 
   const handleDeleteCard = () => {
-    onDeleteCard(id, token, link);
+    const foundLinkObject = linksArray.find((obj) => obj.link === link);
+    const linkObjectId = foundLinkObject.id;
+    onDeleteCard(id || linkObjectId, token, link);
     setSavedCard((prevSaved) => !prevSaved);
   };
 
-  console.log(id);
   const handleSaveCard = () => {
     console.log({ linksArray });
-    if (loggedIn && !linksArray.includes(link)) {
+    if (loggedIn && !linksArray.some((obj) => obj.link === link)) {
       onLikeCard(token, cardInfo);
       setSavedCard((prevSaved) => !prevSaved);
     }
-    if (loggedIn && linksArray.includes(link)) {
-      return;
+    if (loggedIn && linksArray.some((obj) => obj.link === link)) {
+      handleDeleteCard();
     }
   };
 
   const imageClass = () => {
-    if (linksArray.includes(link)) {
+    if (linksArray.some((obj) => obj.link === link)) {
       return saveMarked;
     }
     return saveNormal;

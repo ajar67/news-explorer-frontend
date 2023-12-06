@@ -154,7 +154,10 @@ function App() {
   ////////////taking care of the saving button toggle////////////////////////
 
   const [savedCards, setSavedCards] = useState([]);
-  const linksArray = savedCards.map((card) => card.link);
+  const linksArray = savedCards.map((card) => ({
+    id: card._id,
+    link: card.link,
+  }));
   const handleSavingCard = (token, cardData) => {
     console.log(token);
     saveCard(token, cardData)
@@ -183,13 +186,7 @@ function App() {
     handleLoading();
     deleteCard(id, token)
       .then(() => {
-        setSavedCards((prevCards) =>
-          prevCards.filter((x) => {
-            console.log(link, x.link);
-            return link !== x.link;
-          })
-        );
-        console.log("deleteCard: ", linksArray);
+        setSavedCards((prevCards) => prevCards.filter((x) => link !== x.link));
       })
       .catch((err) => console.error(err))
       .finally(handleLoading);
