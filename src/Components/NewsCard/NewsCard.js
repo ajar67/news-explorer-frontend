@@ -75,7 +75,6 @@ const NewsCard = ({
   };
 
   const handleSaveCard = () => {
-    console.log({ linksArray });
     if (loggedIn && !linksArray.some((obj) => obj.link === link)) {
       onLikeCard(token, cardInfo);
       setSavedCard((prevSaved) => !prevSaved);
@@ -86,7 +85,7 @@ const NewsCard = ({
   };
 
   const imageClass = () => {
-    if (linksArray.some((obj) => obj.link === link)) {
+    if (loggedIn && linksArray.some((obj) => obj.link === link)) {
       return saveMarked;
     }
     return saveNormal;
