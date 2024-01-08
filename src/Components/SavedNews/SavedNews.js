@@ -30,8 +30,8 @@ const SavedNews = ({
     return wordCountArray;
   }
   const sortedKeywords = countAndSort(keywords);
-  const usableKeywords = sortedKeywords.map(([keyword]) => keyword).join(", ");
-  const sliceSortedKeywords = `${usableKeywords.slice(0, 2)} and ${
+  const usableKeywords = sortedKeywords.map(([keyword]) => keyword);
+  const sliceSortedKeywords = `${usableKeywords.slice(0, 2).join(", ")} and ${
     usableKeywords.length - 2
   } more`;
   const numberOfCards = savedCards.length;
