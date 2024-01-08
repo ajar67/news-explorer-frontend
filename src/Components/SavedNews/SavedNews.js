@@ -14,8 +14,9 @@ const SavedNews = ({
   onDeleteCard,
   linksArray,
 }) => {
-  const keywords = savedCards.map((card) => card.keyword);
-  const allWords = keywords.flatMap((keyword) => keyword.split(/\s+/));
+  const keywords = savedCards.flatMap((card) =>
+    card.keyword.split(/\s+/).join(", ")
+  );
 
   function countAndSort(words) {
     const wordCounts = {};
@@ -29,7 +30,7 @@ const SavedNews = ({
     wordCountArray.sort((a, b) => b.count - a.count);
     return wordCountArray;
   }
-  const sortedKeywords = countAndSort(allWords);
+  const sortedKeywords = countAndSort(keywords);
   const usableKeywords = sortedKeywords.map(([keyword]) => keyword);
   const sliceSortedKeywords = `${usableKeywords.slice(0, 2).join(", ")} and ${
     usableKeywords.length - 2
