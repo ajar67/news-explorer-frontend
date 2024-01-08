@@ -15,7 +15,7 @@ const SavedNews = ({
   linksArray,
 }) => {
   const keywords = savedCards.map((card) => card.keyword);
-  console.log({ keywords });
+  const allWords = keywords.flatMap((keyword) => keyword.split(/\s+/));
 
   function countAndSort(words) {
     const wordCounts = {};
@@ -29,7 +29,7 @@ const SavedNews = ({
     wordCountArray.sort((a, b) => b.count - a.count);
     return wordCountArray;
   }
-  const sortedKeywords = countAndSort(keywords);
+  const sortedKeywords = countAndSort(allWords);
   const usableKeywords = sortedKeywords.map(([keyword]) => keyword);
   const sliceSortedKeywords = `${usableKeywords.slice(0, 2).join(", ")} and ${
     usableKeywords.length - 2
