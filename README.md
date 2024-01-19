@@ -16,6 +16,9 @@ React JS
 React Router
 CSS - BEM methodology
 
+## Demo
+https://www.loom.com/share/ab1666ce1bf942399884389da3bc32e9?sid=6a76913b-6621-4e65-8806-0df0e0b02570
+
 ## Updates
 I want to improve this website for there to be a section for legitimate news journals and journalists to add certain articles. There would have to be some type of authentication to make sure it was a proper news business creating the news but I think that would be pretty cool.
 
